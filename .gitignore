@@ -1,0 +1,74 @@
+# Ignore Visual Studio related files
+.vs/
+.vscode/
+.idea/
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+# Windows Installer files
+*.cab
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]Release/
+[Dd]ReleasePublic/
+x64/
+x86/
+[Aa]rch/
+[Aa]rch64/
+bin/
+obj/
+# ASP.NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+# npm packages
+node_modules/
+# Debug and profiling files
+*.dbmdl
+# Entity Framework Core migrations
+Migrations/
+# User secrets, passwords, and sensitive data
+secrets/
+# .NET Core files
+*.dotnet/
+# Web development related files
+wwwroot/
+# Ignore generated files
+*.pdb
+*.log
+*.bak
+*.swp
+*.swo
+# ASP.NET Temporary files
+aspnet_client/
+# Entity Framework Core Tools
+*.sqlite
+# JetBrains Rider settings
+.idea/
+# Other IDE configurations
+.idea/
+# VS Code directories
+.vscode/
+# JetBrains Rider settings
+.idea/
+# AutoMapper files
+AutoMapper-*
+# IIS Express settings (if applicable)
+iisexpress/
+# Include the following folders if you're using JetBrains Rider
+.idea/
+# Temporary folders for IDEs and services like Webpack
+tmp/
+# User defined
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
