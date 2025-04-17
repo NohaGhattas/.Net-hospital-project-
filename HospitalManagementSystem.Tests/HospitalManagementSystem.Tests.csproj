@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HospitalManagementSystem\HospitalManagementSystem.Models\HospitalManagementSystem.Models.csproj" />
-    <ProjectReference Include="..\HospitalManagementSystem\HospitalManagementSystem.Presentation.csproj" />
+    <ProjectReference Include="..\HospitalManagementSystem\HospitalManagementSystem.Presentation\HospitalManagementSystem.Presentation.csproj" />
     <ProjectReference Include="..\HospitalManagementSystem\HospitalManagementSystem.Services\HospitalManagementSystem.Services.csproj" />
   </ItemGroup>
 
