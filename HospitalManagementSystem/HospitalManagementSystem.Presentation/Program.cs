@@ -1,6 +1,8 @@
 using HospitalManagementSystem.Data;
 using HospitalManagementSystem.Data.Repositories;
 using HospitalManagementSystem.Data.Repositories.Interfaces;
+using HospitalManagementSystem.Services.Services;
+using HospitalManagementSystem.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,8 @@ namespace HospitalManagementSystem.Presentation
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("HospitalManagementSystem.Data")));
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IPatientService,PatientService>();
+            builder.Services.AddScoped<IDoctorService, DoctorService>();
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
