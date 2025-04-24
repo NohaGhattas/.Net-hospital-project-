@@ -82,3 +82,6 @@ HospitalManagementSystem/
 ## Acknowledgements
 
 - [Ack](url) description.
+
+- [Download Wireframe](./docs/.net%20Wireframe.pdf)
+
