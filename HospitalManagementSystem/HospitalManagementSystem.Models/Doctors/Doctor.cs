@@ -8,6 +8,8 @@ namespace HospitalManagementSystem.Models.Doctors
     {
         [Key]
         public int DoctorID { get; set; }
+
+        public string Name { get; set; }
         public string? Specialization { get; set; }
         public string? Status { get; set; }
         public string? ImageURL { get; set; }

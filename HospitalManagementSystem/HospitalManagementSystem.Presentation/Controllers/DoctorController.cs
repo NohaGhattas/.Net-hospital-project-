@@ -1,4 +1,5 @@
-﻿using HospitalManagementSystem.Services.Services.Interfaces;
+﻿using HospitalManagementSystem.Presentation.ViewModels;
+using HospitalManagementSystem.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Presentation.Controllers
@@ -13,8 +14,23 @@ namespace HospitalManagementSystem.Presentation.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            var doctorsVM = new List<DoctorViewModel>();
+
             var doctors = await _doctorService.GetAllDoctorsAsync();
-            if (doctors.Any()) return View(doctors);
+            foreach(var I in doctors)
+            {
+                var doctorModel = new DoctorViewModel()
+                {
+                    ImageURL = I.ImageURL,
+                    Name = I.Name,
+                    Status= I.Status,
+                    Specialization = I.Specialization,
+
+                };
+                doctorsVM.Add(doctorModel);
+            }
+         
+            if (doctors.Any()) return View(doctorsVM);
             return View();
         }
     }
