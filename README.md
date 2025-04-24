@@ -9,6 +9,8 @@ organizing hospital and clinic appointment bookings. It enables patients to book
 appointments easily while considering doctors' availability, schedules, personal data, and medical 
 records.
 
+[View ERD](https://drive.google.com/file/d/1Y0kTyGLfvSNKoXLljpFP7mjZotg-aC9e/view?usp=sharing)
+
 ## Features
 - Feature 1.
 - Feature 2.
