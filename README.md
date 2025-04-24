@@ -13,7 +13,6 @@ records.
 
 [Download Wireframe](https://drive.google.com/file/d/1WJTppyhXQu0Ptw8IZ94PT0WBOFfp4G1a/view?usp=drive_link)
 
-![Entity-Relationship Diagram](download/ERD.png)
 
 ## Features
 - Feature 1.
