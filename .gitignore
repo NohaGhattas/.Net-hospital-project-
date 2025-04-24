@@ -34,13 +34,11 @@ node_modules/
 # Debug and profiling files
 *.dbmdl
 # Entity Framework Core migrations
-Migrations/
 # User secrets, passwords, and sensitive data
 secrets/
 # .NET Core files
 *.dotnet/
 # Web development related files
-wwwroot/
 # Ignore generated files
 *.pdb
 *.log
