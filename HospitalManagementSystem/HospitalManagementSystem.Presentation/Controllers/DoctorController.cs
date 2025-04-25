@@ -1,6 +1,8 @@
-﻿using HospitalManagementSystem.Presentation.ViewModels;
+﻿using Azure.Core;
+using HospitalManagementSystem.Presentation.ViewModels;
 using HospitalManagementSystem.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace HospitalManagementSystem.Presentation.Controllers
 {
@@ -17,6 +19,16 @@ namespace HospitalManagementSystem.Presentation.Controllers
             var doctorsVM = new List<DoctorViewModel>();
 
             var doctors = await _doctorService.GetAllDoctorsAsync();
+            if(doctors == null || !doctors.Any())
+            {
+                var errorViewModel = new ErrorViewModel
+                {
+                    ErrorType = "404",
+                    ErrorMessage = "Unfound Information"
+                };
+
+                return View("Error", errorViewModel);
+            }
             foreach(var I in doctors)
             {
                 var doctorModel = new DoctorViewModel()

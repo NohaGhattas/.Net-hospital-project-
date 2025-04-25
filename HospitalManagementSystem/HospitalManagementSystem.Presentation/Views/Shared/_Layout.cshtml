@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="Css/css/slick.css">
     <link rel="stylesheet" href="Css/css/nice-select.css">
     <link rel="stylesheet" href="Css/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <!-- ? Preloader Start -->
@@ -46,7 +48,7 @@
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2 col-md-1">
                             <div class="logo">
-                                <a href="index.html"><img src="Images/img/logo/logo.png" alt=""></a>
+                                <a asp-controller="Home" asp-action="Index"><img src="Images/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-10">
@@ -59,21 +61,21 @@
                                             <li><a href="about.html">About</a></li>
                                             <li><a asp-controller="Doctor" asp-action="Index">Doctors</a></li>
                                             <li><a href="department.html">Department</a></li>
-                                            <li>
-                                                <a href="blog.html">Blog</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="blog_details.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Element</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <!-- <li>
+                                                 <a href="blog.html">Blog</a>
+                                                 <ul class="submenu">
+                                                     <li><a href="blog.html">Blog</a></li>
+                                                     <li><a href="blog_details.html">Blog Details</a></li>
+                                                     <li><a href="elements.html">Element</a></li>
+                                                 </ul>
+                                             </li> -->
+                                            <li><a asp-controller="ContactUs" asp-action="Index">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
-                                <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                <!-- <div class="header-right-btn f-right d-none d-lg-block ml-30">
                                     <a href="#" class="btn header-btn">01654.066.456</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <!-- Mobile Menu -->
@@ -106,8 +108,10 @@
                                 <div class="footer-tittle">
                                     <h4>About Us</h4>
                                     <div class="footer-pera">
-                                        <p class="info1">Lorem igpsum doldfor sit amet, adipiscing elit, sed do eiusmod tempor cergelit rgh. </p>
-                                        <p class="info1">Lorem ipsum dolor sit amet, adipiscing elit.</p>
+                                        <p class="info1">
+                                            Our Hospital Appointment Management System simplifies the process of booking appointments, allowing patients to easily register, manage their profiles, and schedule appointments with doctors. You can search for doctors by name or specialty and receive booking confirmations via email or SMS. We prioritize security and ensure your personal information is always protected while providing a seamless, user-friendly experience.                       
+                                        </p>
+                                        <p class="info1">We’re here to make your healthcare journey simpler, faster, and more accessible.</p>
                                     </div>
                                 </div>
                             </div>
@@ -115,11 +119,11 @@
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
                             <div class="single-footer-caption mb-50">
                                 <div class="footer-number mb-50">
-                                    <h4><span>+564 </span>7885 3222</h4>
-                                    <p>youremail@gmail.com</p>
+                                    <h4><span>+2 </span>1234 56789</h4>
+                                    <p>egy_hospital_management_system@hsm.com</p>
                                 </div>
                                 <!-- Form -->
-                                <div class="footer-form">
+                                <!-- <div class="footer-form">
                                     <div id="mc_embed_signup">
                                         <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part" novalidate="true">
                                             <input type="email" name="EMAIL" id="newsletter-form-email" placeholder=" Email Address " class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'">
@@ -131,7 +135,7 @@
                                             <div class="mt-10 info"></div>
                                         </form>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -150,10 +154,10 @@
                         <div class="col-xl-3 col-lg-4">
                             <!-- Footer Social -->
                             <div class="footer-social f-right">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                                <!-- <a href="#"><i class="fas fa-globe"></i></a> -->
+                                <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -205,6 +209,7 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="./Js/js/plugins.js"></script>
     <script src="./Js/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>
