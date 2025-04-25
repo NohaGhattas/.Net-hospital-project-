@@ -1,0 +1,13 @@
+{
+  "version": "3.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "font-awesome@6.7.2",
+      "destination": "wwwroot/Css/font-awesome/",
+      "files": [
+        "css/fontawesome.min.css"
+      ]
+    }
+  ]
+}

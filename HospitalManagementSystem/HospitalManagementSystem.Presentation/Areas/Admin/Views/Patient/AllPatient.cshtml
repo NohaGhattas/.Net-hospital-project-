@@ -1,0 +1,69 @@
+﻿@using HospitalManagementSystem.Presentation.Areas.Admin.Models
+@model List<PatientVM>
+
+<div class="container-fluid">
+    <div class="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">All Patients</div>
+                    </div>
+                    <div class="card-body">
+                        <table id="docTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>BirthDate</th>
+                                    <th>GenderType</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in Model)
+                                {
+                                    <tr>
+                                        <td>@d.Id</td>
+                                        <td>@d.Name</td>
+                                        <td>@d.PhoneNumber</td>
+                                        <td>@d.BirthDate.ToString("dd/MM/yyyy")</td>
+                                        <td>@d.GenderType.ToString()</td>
+                                        <td>@d.Address</td>
+                                        <td>@d.Status</td>
+                                        <td>
+                                            <a class="btn btn-success" asp-area="Admin" asp-controller="Patient" asp-action="EditPatient" asp-route-id="@d.Id">Edit</a> |
+                                            <form asp-area="Admin" asp-controller="Patient" asp-action="DeletePatient" asp-route-id="@d.Id" method="post" style="display:inline">
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this doctor?');">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+      $('#docTable').DataTable({
+        paging: true,
+        pageLength: 10,
+        lengthMenu: [5,10,25],
+        ordering: true,
+        searching: true
+      });
+    });
+</script>

@@ -13,11 +13,13 @@ namespace HospitalManagementSystem.Models.Doctors
         public string? Specialization { get; set; }
         public string? Status { get; set; }
         public string? ImageURL { get; set; }
+        public string? SpecialtyLevel {  get; set; }
+        public string Phone { get; set; }
 
         [ForeignKey("Department")]
         public int DepartmentID { get; set; }
-        public virtual Department? Department { get; set; }
-        public virtual ICollection<Schedule>? Schedules { get; set; }
-        public virtual ICollection<Appointment>? Appointments { get; set; }
+        public virtual Department Department { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; } = new HashSet<Schedule>();
+        public virtual ICollection<Appointment> Appointments { get; set; }=new HashSet<Appointment>();
     }
 }

@@ -11,7 +11,7 @@
           type="image/x-icon" />
 
     <!-- Fonts and icons -->
-    <script src="Js/js/webfont/webfont.min.js"></script>
+    @* <script src="Js/js/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
           google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -28,13 +28,17 @@
             sessionStorage.fonts = true;
           },
         });
-    </script>
+    </script> *@
 
     <!-- CSS Files -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-pVI6xdnBb/YnwRAxC+0slaxpWVMDlT0oDb6qw7q1aGmjduPGTiH3vsXErTQcZeyMOXuS+g9xjvFQ0VDiMfREUg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="Css/cssDash/bootstrap.min.css" />
     <link rel="stylesheet" href="Css/cssDash/plugins.min.css" />
     <link rel="stylesheet" href="Css/cssDash/kaiadmin.min.css" />
-
+    <link asp-href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="Css/cssDash/demo.css" />
 </head>
@@ -45,12 +49,9 @@
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    <a href="index.html" class="logo">
-                        <img src="assets/img/kaiadmin/logo_light.svg"
-                             alt="navbar brand"
-                             class="navbar-brand"
-                             height="20" />
-                    </a>
+                   
+                                <a href="index.html"><img src="Images/img/logo/logo.png" alt=""></a>
+                            
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
                             <i class="gg-menu-right"></i>
@@ -69,28 +70,20 @@
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
                         <li class="nav-item active">
-                            <a data-bs-toggle="collapse"
-                               href="#dashboard"
+                            <a 
+                               href="Admin/Dashboard"
                                class="collapsed"
                                aria-expanded="false">
-                                <i class="fas fa-home"></i>
+                                <i class="fas-solid fas-house" style="color:white"></i>
                                 <p>Dashboard</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="dashboard">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="../demo1/index.html">
-                                            <span class="sub-item">Dashboard 1</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                           
                         </li>
                        
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#doctor">
-                                <i class="fas fa-layer-group"></i>
+                                <i class="fa-solid fa-user-doctor"></i>
                                 <p>Doctors</p>
                                 <span class="caret"></span>
                             </a>
@@ -98,11 +91,12 @@
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="Admin/Doctor/AddDoctor">
+                                            <i class="fa-solid fa-user-plus"></i>
                                             <span class="sub-item">Add new Doctor</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="components/buttons.html">
+                                        <a href="Admin/Doctor/AllDoctors">
                                             <span class="sub-item">AllDoctors</span>
                                         </a>
                                     </li>
@@ -113,19 +107,20 @@
                         </li>
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#patient">
-                                <i class="fas fa-th-list"></i>
+                                <i class="fa-solid fa-bed"></i>
                                 <p>Patients</p>
                                 <span class="caret"></span>
                             </a>
                             <div class="collapse" id="patient">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="sidebar-style-2.html">
+                                        <a href="Admin/Patient/AddPatient">
+                                            <i class="fa-solid fa-user-plus"></i>
                                             <span class="sub-item">Add new Patient</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="icon-menu.html">
+                                        <a href="Admin/Patient/AllPatient">
                                             <span class="sub-item">All Patients</span>
                                         </a>
                                     </li>
@@ -656,7 +651,8 @@
     <script src="Js/jsDash/core/jquery-3.7.1.min.js"></script>
     <script src="Js/jsDash/core/popper.min.js"></script>
     <script src="Js/jsDash/core/bootstrap.min.js"></script>
-
+    <script asp-src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script asp-src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <!-- jQuery Scrollbar -->
     <script src="Js/jsDash/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
