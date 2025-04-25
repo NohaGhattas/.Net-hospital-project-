@@ -6,12 +6,12 @@
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
           name="viewport" />
     <base href="~/" />
-    <link rel="icon"
+     @* <link rel="icon"
           href="assets/img/kaiadmin/favicon.ico"
           type="image/x-icon" />
-
+  *@
     <!-- Fonts and icons -->
-    @* <script src="Js/js/webfont/webfont.min.js"></script>
+     <script src="Js/js/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
           google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -28,13 +28,10 @@
             sessionStorage.fonts = true;
           },
         });
-    </script> *@
+    </script> 
 
     <!-- CSS Files -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-pVI6xdnBb/YnwRAxC+0slaxpWVMDlT0oDb6qw7q1aGmjduPGTiH3vsXErTQcZeyMOXuS+g9xjvFQ0VDiMfREUg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
     <link rel="stylesheet" href="Css/cssDash/bootstrap.min.css" />
     <link rel="stylesheet" href="Css/cssDash/plugins.min.css" />
     <link rel="stylesheet" href="Css/cssDash/kaiadmin.min.css" />
@@ -648,42 +645,40 @@
     <!-- End Custom template -->
     </div>
     <!--   Core JS Files   -->
-    <script src="Js/jsDash/core/jquery-3.7.1.min.js"></script>
-    <script src="Js/jsDash/core/popper.min.js"></script>
-    <script src="Js/jsDash/core/bootstrap.min.js"></script>
-    <script asp-src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script asp-src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="~/Js/jsDash/core/jquery-3.7.1.min.js"></script>
+    <script src="~/Js/jsDash/core/popper.min.js"></script>
+    <script src="~/Js/jsDash/core/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <!-- jQuery Scrollbar -->
-    <script src="Js/jsDash/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/Js/jsDash/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
     <!-- Chart JS -->
-    <script src="Js/jsDash/plugin/chart.js/chart.min.js"></script>
+    <script src="~/Js/jsDash/plugin/chart.js/chart.min.js"></script>
 
     <!-- jQuery Sparkline -->
-    <script src="Js/jsDash/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Js/jsDash/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
     <!-- Chart Circle -->
-    <script src="Js/jsDash/plugin/chart-circle/circles.min.js"></script>
+    <script src="~/Js/jsDash/plugin/chart-circle/circles.min.js"></script>
 
     <!-- Datatables -->
-    <script src="Js/jsDash/plugin/datatables/datatables.min.js"></script>
+    <script src="~/Js/jsDash/plugin/datatables/datatables.min.js"></script>
 
     <!-- Bootstrap Notify -->
-    <script src="Js/jsDash/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="~/Js/jsDash/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
     <!-- jQuery Vector Maps -->
-    <script src="Js/jsDash/plugin/jsvectormap/jsvectormap.min.js"></script>
-    <script src="Js/jsDash/plugin/jsvectormap/world.js"></script>
+    <script src="~/Js/jsDash/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="~/Js/jsDash/plugin/jsvectormap/world.js"></script>
 
     <!-- Sweet Alert -->
-    <script src="Js/jsDash/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Js/jsDash/plugin/sweetalert/sweetalert.min.js"></script>
 
     <!-- Kaiadmin JS -->
-    <script src="Js/jsDash/kaiadmin.min.js"></script>
+    <script src="~/Js/jsDash/kaiadmin.min.js"></script>
 
-    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-    <script src="Js/jsDash/setting-demo.js"></script>
-    <script src="Js/jsDash/demo.js"></script>
+    
     <script>
         $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
           type: "line",

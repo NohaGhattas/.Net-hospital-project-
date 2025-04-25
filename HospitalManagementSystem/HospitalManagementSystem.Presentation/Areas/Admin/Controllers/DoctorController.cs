@@ -2,9 +2,11 @@
 using HospitalManagementSystem.Presentation.Areas.Admin.Models;
 using HospitalManagementSystem.Presentation.ViewModels;
 using HospitalManagementSystem.Services.Helpers;
+using HospitalManagementSystem.Services.Services;
 using HospitalManagementSystem.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 {
@@ -12,10 +14,12 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
     public class DoctorController : Controller
     {
         private readonly IDoctorService _doctorService;
+        private readonly IDepartmentService _departmentService;
 
-        public DoctorController(IDoctorService doctorService)
+        public DoctorController(IDoctorService doctorService, IDepartmentService departmentService)
         {
             _doctorService = doctorService;
+            _departmentService = departmentService;
         }
        
         [HttpGet]
@@ -38,15 +42,31 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             return View(doctorsList);
         }
         [HttpGet]
-        public IActionResult AddDoctor()
+        public async Task<IActionResult> AddDoctor()
         {
-            return View(new DoctorVM());
+            var departments = await _departmentService.GetAllDepartmentsAsync();
+            var model = new DoctorVM()
+            {
+                Departments = departments.Select(d => new SelectListItem
+                {
+                    Value = d.DepartmentID.ToString(),
+                    Text = d.Name
+                }).ToList()
+            };
+            
+            return  View(model);
         }
         [HttpPost]
         public async Task<IActionResult> AddDoctor(DoctorVM doctorVm)
         {
             if (!ModelState.IsValid)
+            {
+                doctorVm.Departments = (await _departmentService.GetAllDepartmentsAsync())
+           .Select(d => new SelectListItem { Value = d.DepartmentID.ToString(), Text = d.Name })
+           .ToList();
+
                 return View(doctorVm);
+            }
 
             doctorVm.ImageURL = DocumentHelper.UploadFile(doctorVm.Image, "images");
 
