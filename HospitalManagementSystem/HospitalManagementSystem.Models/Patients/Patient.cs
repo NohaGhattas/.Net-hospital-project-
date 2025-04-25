@@ -1,4 +1,5 @@
 using HospitalManagementSystem.Models.Appointments;
+using HospitalManagementSystem.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace HospitalManagementSystem.Models.Patients
@@ -10,17 +11,17 @@ namespace HospitalManagementSystem.Models.Patients
         public string? Address { get; set; }
 
         [Required]
-        public string? Name { get; set; }
+        public string Name { get; set; }
+        public Gender GenderType { get; set; }
         public string? Status { get; set; }
-
-        [Phone]
+        public DateTime BirthDate { get; set; }
         public string? PhoneNumber { get; set; }
         public DateTime CreatedDate { get; set; }
         public int CreatedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public int ModifiedBy { get; set; }
 
-        public virtual ICollection<Appointment>? Appointments { get; set; }
-        public virtual ICollection<History>? Histories { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }= new HashSet<Appointment>();
+        public virtual ICollection<History> Histories { get; set; }= new HashSet<History>();
     }
 }

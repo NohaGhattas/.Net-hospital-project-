@@ -12,7 +12,7 @@ namespace HospitalManagementSystem.Models.Contacts
         public string? Address { get; set; }
 
         [Required]
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public string? Status { get; set; }
         public string? Location { get; set; }
         public string? Facebook { get; set; }

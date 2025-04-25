@@ -1,0 +1,72 @@
+﻿@using HospitalManagementSystem.Presentation.Areas.Admin.Models
+@model List<DoctorVM>
+
+<div class="container-fluid">
+    <div class="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">All Doctors</div>
+                    </div>
+                    <div class="card-body">
+                        <table id="docsTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Specialization</th>
+                                    <th>Status</th>
+                                    <th>Photo</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in Model)
+                                {
+                                    <tr>
+                                        <td>@d.Id</td>
+                                        <td>@d.Name</td>
+                                        <td>@d.Phone</td>
+                                        <td>@d.Specialization</td>
+                                        <td>@d.Status</td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(d.ImageURL))
+                                            {
+                                                <img src="@d.ImageURL" alt="Photo" width="60" />
+                                            }
+                                        </td>
+                                        <td>
+                                            <a class = "btn btn-success"asp-area="Admin" asp-controller="Doctor" asp-action="EditDoctor" asp-route-id="@d.Id">Edit</a> |
+                                            <form asp-area="Admin" asp-controller="Doctor" asp-action="DeleteDoctor" asp-route-id="@d.Id" method="post" style="display:inline">
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this doctor?');">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+      $('#docsTable').DataTable({
+        paging: true,           
+        pageLength: 10,         
+        lengthMenu: [5,10,25],
+        ordering: true,         
+        searching: true         
+      });
+    });
+</script>

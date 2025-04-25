@@ -258,7 +258,14 @@ namespace HospitalManagementSystem.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Specialization")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecialtyLevel")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
@@ -327,11 +334,17 @@ namespace HospitalManagementSystem.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("GenderType")
+                        .HasColumnType("int");
 
                     b.Property<int>("ModifiedBy")
                         .HasColumnType("int");

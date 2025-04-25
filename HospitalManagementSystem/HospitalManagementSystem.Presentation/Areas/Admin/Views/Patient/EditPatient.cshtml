@@ -1,0 +1,81 @@
+﻿@using HospitalManagementSystem.Presentation.Areas.Admin.Models
+@model PatientVM
+
+<div class="container-fluid">
+    <div class="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">New Patient</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="name1">Name</label>
+                                    <input type="text" asp-for="@Model.Name" class="form-control" id="name1" placeholder="Enter your name" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="spec">Address</label>
+                                    <input type="text" asp-for="@Model.Address" class="form-control" id="spec" placeholder="Enter Address" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="stat">Status</label>
+                                    <input type="text" asp-for="@Model.Status" class="form-control" id="stat" placeholder="Enter Input" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" asp-for="@Model.PhoneNumber" class="form-control" id="phone" placeholder="Enter Input" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="BirthDate"></label>
+                                    <input asp-for="BirthDate" class="form-control" type="date" />
+                                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Gender">Gender</label><br />
+
+                                    <div class="form-check form-check-inline">
+                                        <input asp-for="Gender"
+                                               class="form-check-input"
+                                               type="radio"
+                                               value="Male"
+                                               id="Gender_Male" />
+                                        <label class="form-check-label" for="Gender_Male">Male</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input asp-for="Gender"
+                                               class="form-check-input"
+                                               type="radio"
+                                               value="Female"
+                                               id="Gender_Female" />
+                                        <label class="form-check-label" for="Gender_Female">Female</label>
+                                    </div>
+
+                                    <span asp-validation-for="Gender" class="text-danger"></span>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="card-action">
+                <button class="btn btn-success">Submit</button>
+                <button class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
