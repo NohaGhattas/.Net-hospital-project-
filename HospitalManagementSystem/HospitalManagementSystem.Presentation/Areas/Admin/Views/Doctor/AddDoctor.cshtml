@@ -12,49 +12,45 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-6 col-lg-6">
-                        <div class="form-group">
-                          <label for="name1">Name</label>
-                                    <input type="text" asp-for="@Model.Name"  class="form-control" id="name1" placeholder="Enter your name" />
-                        </div>
+                                <form asp-action="AddDoctor" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="name1">Name</label>
+                                        <input type="text" asp-for="@Model.Name" class="form-control" id="name1" placeholder="Enter your name" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="spec">Specialization</label>
+                                        <input type="text" asp-for="@Model.Specialization" class="form-control" id="spec" placeholder="Enter Specialization" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stat">Status</label>
+                                        <input type="text" asp-for="@Model.Status" class="form-control" id="stat" placeholder="Enter Input" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="text" asp-for="@Model.Phone" class="form-control" id="phone" placeholder="Enter Input" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="DepartmentId">Department</label>
+                                        <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-select"></select>
+                                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlFile1">Image</label>
+                                        <input type="file"
+                                               class="form-control-file"
+                                               id="exampleFormControlFile1"
+                                               asp-for="@Model.Image" />
+                                    </div>
+                                    <div class="card-action">
+                                    
+                                    <button class="btn btn-success">Submit</button>
+                                    <button class="btn btn-danger">Cancel</button>
+                                    </div>
+                                </form>
                        
-                        <div class="form-group">
-                                    <label for="spec">Specialization</label>
-                          <input type="text" asp-for="@Model.Specialization"class="form-control"id="spec"placeholder="Enter Specialization" />
-                        </div>
-                                <div class="form-group">
-                                    <label for="stat">Status</label>
-                                    <input type="text" asp-for="@Model.Status" class="form-control" id="stat" placeholder="Enter Input" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="text" asp-for="@Model.Phone" class="form-control" id="phone" placeholder="Enter Input" />
-                                </div>
-                      
-                        <div class="form-group">
-                          <label for="exampleFormControlSelect1"
-                            >Department</label
-                          >
-                          <select
-                            class="form-select"
-                            id="exampleFormControlSelect1"
-                          >
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="exampleFormControlFile1">Image</label>
-                          <input
-                            type="file"
-                            class="form-control-file"
-                            id="exampleFormControlFile1"
-                            asp-for="@Model.Image"
-                          />
-                        </div>
                       
                         
                       </div>
@@ -67,10 +63,7 @@
                         
                     </div>
                   </div>
-                  <div class="card-action">
-                    <button class="btn btn-success">Submit</button>
-                    <button class="btn btn-danger">Cancel</button>
-                  </div>
+                 
                 </div>
               </div>
             </div>

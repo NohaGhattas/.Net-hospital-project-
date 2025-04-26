@@ -27,9 +27,9 @@ namespace HospitalManagementSystem.Services.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Department>> GetAllDepartmentsAsync()
+        public async Task<IEnumerable<Department>> GetAllDepartmentsAsync()
         {
-            throw new NotImplementedException();
+            return await _departRepository.GetAllAsync();
         }
 
         public Task<Department> GetDepartmentByIdAsync(int id)

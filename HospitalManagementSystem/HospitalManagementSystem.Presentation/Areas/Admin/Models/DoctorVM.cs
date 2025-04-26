@@ -1,4 +1,5 @@
 ﻿using HospitalManagementSystem.Presentation.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace HospitalManagementSystem.Presentation.Areas.Admin.Models
@@ -9,6 +10,9 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Models
         [Phone]
         public string Phone { get; set; }
         public IFormFile Image { get; set; }
+        public int? DepartmentId { get; set; }
+
+        public List<SelectListItem> Departments { get; set; }
 
     }
 }
