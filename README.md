@@ -1,6 +1,6 @@
 # Hospital Management System
 
-![App Icon](path)
+![App Icon](docs/logo.png)
 
 ## Overview
 
@@ -28,9 +28,9 @@ records.
 
 ## Application
 
-![App Screenshot](path)
-![App Screenshot](path)
-![App Screenshot](path)
+![App Screenshot](docs/HomePage.png)
+![App Screenshot](docs/About.png)
+![App Screenshot](docs/Contact.png)
 
 ## Components
 
