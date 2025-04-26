@@ -14,25 +14,25 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label for="name1">Name</label>
-                                    <input type="text" asp-for="@Model.Name" class="form-control" id="name1" placeholder="Enter your name" />
+                                    <input type="text" asp-for="@Model.Name" value="@Model.Name" class="form-control" id="name1"  />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="spec">Address</label>
-                                    <input type="text" asp-for="@Model.Address" class="form-control" id="spec" placeholder="Enter Address" />
+                                    <input type="text" asp-for="@Model.Address" value="@Model.Address" class="form-control" id="spec" />
                                 </div>
                                 <div class="form-group">
                                     <label for="stat">Status</label>
-                                    <input type="text" asp-for="@Model.Status" class="form-control" id="stat" placeholder="Enter Input" />
+                                    <input type="text" asp-for="@Model.Status" value="@Model.Status" class="form-control" id="stat"  />
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone Number</label>
-                                    <input type="text" asp-for="@Model.PhoneNumber" class="form-control" id="phone" placeholder="Enter Input" />
+                                    <input type="text" asp-for="@Model.PhoneNumber" value="@Model.PhoneNumber" class="form-control" id="phone"  />
                                 </div>
 
                                 <div class="form-group">
                                     <label asp-for="BirthDate"></label>
-                                    <input asp-for="BirthDate" class="form-control" type="date" />
+                                    <input asp-for="BirthDate" class="form-control" value="@Model.BirthDate" type="date" />
                                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">

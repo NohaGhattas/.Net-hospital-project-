@@ -1,0 +1,61 @@
+﻿@using HospitalManagementSystem.Presentation.Areas.Admin.Models
+@model List<DepartmentVM>
+
+<div class="container-fluid">
+    <div class="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">All Departments</div>
+                    </div>
+                    <div class="card-body">
+                        <table id="docTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in Model)
+                                {
+                                    <tr>
+                                        <td>@d.DepartmentID</td>
+                                        <td>@d.Name</td>
+                                        <td>@d.Description</td>
+                                        <td>
+                                            <a class="btn btn-success" asp-area="Admin" asp-controller="Department" asp-action="EditDepartment" asp-route-id="@d.DepartmentID">Edit</a> |
+                                            <form asp-area="Admin" asp-controller="Department" asp-action="DeleteDepartment" asp-route-id="@d.DepartmentID" method="post" style="display:inline">
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this department?');">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+      $('#docTable').DataTable({
+        paging: true,
+        pageLength: 10,
+        lengthMenu: [5,10,25],
+        ordering: true,
+        searching: true
+      });
+    });
+</script>

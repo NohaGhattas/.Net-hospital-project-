@@ -13,24 +13,24 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <input type="text" asp-for="@Model.Id" class="form-control" id="id" hidden/>
+                                    <input type="text" asp-for="@Model.Id"  class="form-control" id="id" hidden/>
                                 </div>
                                 <div class="form-group">
                                     <label for="name1">Name</label>
-                                    <input type="text" asp-for="@Model.Name" class="form-control" id="name1" placeholder="Enter your name" />
+                                    <input type="text" asp-for="@Model.Name" value="@Model.Name" class="form-control" id="name1"  />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="spec">Specialization</label>
-                                    <input type="text" asp-for="@Model.Specialization" class="form-control" id="spec" placeholder="Enter Specialization" />
+                                    <input type="text" asp-for="@Model.Specialization" value="@Model.Specialization" class="form-control" id="spec" />
                                 </div>
                                 <div class="form-group">
                                     <label for="stat">Status</label>
-                                    <input type="text" asp-for="@Model.Status" class="form-control" id="stat" placeholder="Enter Input" />
+                                    <input type="text" asp-for="@Model.Status" value="@Model.Status" class="form-control" id="stat"  />
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone Number</label>
-                                    <input type="text" asp-for="@Model.Phone" class="form-control" id="phone" placeholder="Enter Input" />
+                                    <input type="text" asp-for="@Model.Phone" value="@Model.Phone"class="form-control" id="phone"  />
                                 </div>
 
                                 <div class="form-group">
@@ -51,6 +51,7 @@
                                            class="form-control-file"
                                            id="exampleFormControlFile1"
                                            asp-for="@Model.Image" />
+                                           <img src="@Model.ImageURL" />
                                 </div>
 
 

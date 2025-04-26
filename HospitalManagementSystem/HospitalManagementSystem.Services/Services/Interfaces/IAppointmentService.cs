@@ -12,11 +12,8 @@ namespace HospitalManagementSystem.Services.Services.Interfaces
     {
         Task<IEnumerable<Appointment>> GetAllAppointmentsAsync();
         Task<Appointment> GetAppointmentByIdAsync(int id);
-        Task AddAppointmentAsync(Appointment schedule);
-        Task UpdateAppointmentAsync(Appointment schedule);
+        Task AddAppointmentAsync(Appointment appointment);
+        Task UpdateAppointmentAsync(Appointment appointment);
         Task DeleteAppointmentAsync(int id);
-        Task<Appointment> GetAppointmentByDoctorIdAsync(int id);
-        Task<Appointment> GetAppointmentByPatientIdAsync(int id);
-        Task<Appointment> GetAppointmentByScheduleIdAsync(int id);
     }
 }

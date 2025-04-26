@@ -21,6 +21,7 @@ namespace HospitalManagementSystem.Presentation
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped<IPatientService,PatientService>();
             builder.Services.AddScoped<IDoctorService, DoctorService>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IContactUsService, ContactUsService>();
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

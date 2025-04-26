@@ -1,4 +1,5 @@
-﻿using HospitalManagementSystem.Models.Appointments;
+﻿using HospitalManagementSystem.Data.Repositories.Interfaces;
+using HospitalManagementSystem.Models.Appointments;
 using HospitalManagementSystem.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,44 +12,37 @@ namespace HospitalManagementSystem.Services.Services
     public class AppointmentService : IAppointmentService
 
     {
-        public Task AddAppointmentAsync(Appointment schedule)
+        private readonly IGenericRepository<Appointment> _appointmentRepository;
+
+        public AppointmentService(IGenericRepository<Appointment> appointmentRepository)
         {
-            throw new NotImplementedException();
+            _appointmentRepository = appointmentRepository;
+        }
+        public async Task AddAppointmentAsync(Appointment appointment)
+        {
+            await _appointmentRepository.AddAsync(appointment);
         }
 
-        public Task DeleteAppointmentAsync(int id)
+        public async Task DeleteAppointmentAsync(int id)
         {
-            throw new NotImplementedException();
+           var appointment = await _appointmentRepository.GetByIdAsync(id);
+            if (appointment != null)
+            {
+                _appointmentRepository.Delete(appointment);
+            }
         }
 
-        public Task<IEnumerable<Appointment>> GetAllAppointmentsAsync()
+        public async Task<IEnumerable<Appointment>> GetAllAppointmentsAsync()
         {
-            throw new NotImplementedException();
+           return await _appointmentRepository.GetAllAsync();
         }
-
-        public Task<Appointment> GetAppointmentByDoctorIdAsync(int id)
+        public async Task<Appointment> GetAppointmentByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _appointmentRepository.GetByIdAsync(id);
         }
-
-        public Task<Appointment> GetAppointmentByIdAsync(int id)
+        public async Task UpdateAppointmentAsync(Appointment appointment)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Appointment> GetAppointmentByPatientIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Appointment> GetAppointmentByScheduleIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAppointmentAsync(Appointment schedule)
-        {
-            throw new NotImplementedException();
+            _appointmentRepository.Update(appointment);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace HospitalManagementSystem.Services.Services
 
         public async Task UpdateDoctorAsync(Doctor doctor)
         {
-            _doctorRepository.Update(doctor);
+             _doctorRepository.Update(doctor);
         }
     }
 }

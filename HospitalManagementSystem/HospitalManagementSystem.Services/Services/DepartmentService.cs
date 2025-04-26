@@ -17,14 +17,18 @@ namespace HospitalManagementSystem.Services.Services
         {
             _departRepository = departRepository;
         }
-        public Task AddDoctorAsync(Department department)
+        public async Task AddDepartmentAsync(Department department)
         {
-            throw new NotImplementedException();
+            await _departRepository.AddAsync(department);
         }
 
-        public Task DeleteDepartmentAsync(int id)
+        public async Task DeleteDepartmentAsync(int id)
         {
-            throw new NotImplementedException();
+            var department = await _departRepository.GetByIdAsync(id);
+            if (department != null)
+            {
+                _departRepository.Delete(department);
+            }
         }
 
         public async Task<IEnumerable<Department>> GetAllDepartmentsAsync()
@@ -32,14 +36,14 @@ namespace HospitalManagementSystem.Services.Services
             return await _departRepository.GetAllAsync();
         }
 
-        public Task<Department> GetDepartmentByIdAsync(int id)
+        public async Task<Department> GetDepartmentByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _departRepository.GetByIdAsync(id);
         }
 
-        public Task UpdateDepartmentAsync(Department department)
+        public async Task UpdateDepartmentAsync(Department department)
         {
-            throw new NotImplementedException();
+             _departRepository.Update(department);
         }
     }
 }
