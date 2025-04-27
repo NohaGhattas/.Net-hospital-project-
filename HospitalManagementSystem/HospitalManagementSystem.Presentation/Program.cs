@@ -19,9 +19,10 @@ namespace HospitalManagementSystem.Presentation
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("HospitalManagementSystem.Data")));
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            builder.Services.AddScoped<IPatientService,PatientService>();
+            builder.Services.AddScoped<IPatientService, PatientService>();
             builder.Services.AddScoped<IDoctorService, DoctorService>();
             builder.Services.AddScoped<IContactUsService, ContactUsService>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
