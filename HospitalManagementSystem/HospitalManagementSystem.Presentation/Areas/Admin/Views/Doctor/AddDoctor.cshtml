@@ -1,4 +1,6 @@
 ﻿@using HospitalManagementSystem.Presentation.Areas.Admin.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @model DoctorVM
 
         <div class="container-fluid">
@@ -16,11 +18,15 @@
                                     <div class="form-group">
                                         <label for="name1">Name</label>
                                         <input type="text" asp-for="@Model.Name" class="form-control" id="name1" placeholder="Enter your name" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+
                                     </div>
 
                                     <div class="form-group">
                                         <label for="spec">Specialization</label>
                                         <input type="text" asp-for="@Model.Specialization" class="form-control" id="spec" placeholder="Enter Specialization" />
+                                        <span asp-validation-for="Specialization" class="text-danger"></span>
+
                                     </div>
                                     <div class="form-group">
                                         <label for="stat">Status</label>
@@ -29,13 +35,13 @@
                                     <div class="form-group">
                                         <label for="phone">Phone Number</label>
                                         <input type="text" asp-for="@Model.Phone" class="form-control" id="phone" placeholder="Enter Input" />
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+
                                     </div>
 
-                                    <div class="form-group">
-                                        <label asp-for="DepartmentId">Department</label>
-                                        <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-select"></select>
-                                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
-                                    </div>
+                                    <label asp-for="DepartmentId" class="form-label">Department</label>
+                                    <select asp-for="DepartmentId" asp-items="Model.Departments" class="form-select"></select>
+                                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlFile1">Image</label>
@@ -47,7 +53,7 @@
                                     <div class="card-action">
 
                                         <button type="submit" class="btn btn-success">Submit</button>
-                                        <button asp-area="Admin" asp-action="AllDoctors" asp-controller="Doctor" class="btn btn-danger">Cancel</button>
+                                        <a asp-area="Admin" asp-action="AllDoctors" asp-controller="Doctor" class="btn btn-danger">Cancel</a>
                                     </div>
                                 </form>
                        

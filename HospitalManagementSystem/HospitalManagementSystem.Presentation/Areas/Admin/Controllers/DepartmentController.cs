@@ -92,8 +92,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             await _departmentService.UpdateDepartmentAsync(oldDepartment);
             return RedirectToAction(nameof(AllDepartments));
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteDepartment(int id)
         {
             var department = await _departmentService.GetDepartmentByIdAsync(id);

@@ -22,7 +22,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             _departmentService = departmentService;
         }
        
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> AllDoctors() {
             var doctors = await _doctorService.GetAllDoctorsAsync();
             var doctorsList = new List<DoctorVM>();
@@ -30,11 +30,13 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             {
                 var doctorVM = new DoctorVM()
                 {
+                    Id = doctor.DoctorID,
                     Name = doctor.Name,
                     Phone = doctor.Phone,
                     ImageURL = doctor.ImageURL,
                     Status = doctor.Status,
                     Specialization = doctor.Specialization,
+                    DepartmentId = doctor.DepartmentID
 
                 };
                 doctorsList.Add(doctorVM);
@@ -56,31 +58,30 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             
             return  View(model);
         }
-        [HttpPost]
         public async Task<IActionResult> AddDoctor(DoctorVM doctorVm)
         {
             if (!ModelState.IsValid)
             {
                 doctorVm.Departments = (await _departmentService.GetAllDepartmentsAsync())
-           .Select(d => new SelectListItem { Value = d.DepartmentID.ToString(), Text = d.Name })
-           .ToList();
-
+                    .Select(d => new SelectListItem { Value = d.DepartmentID.ToString(), Text = d.Name })
+                    .ToList();
                 return View(doctorVm);
             }
 
             doctorVm.ImageURL = DocumentHelper.UploadFile(doctorVm.Image, "images");
 
             var doctor = new Doctor()
-                {
-                    Name = doctorVm.Name,
-                    Specialization = doctorVm.Specialization,
-                    Status = doctorVm.Status,
-                    ImageURL = doctorVm.ImageURL,
-                    Phone = doctorVm.Phone,
-                };
-                await _doctorService.AddDoctorAsync(doctor);
+            {
+                Name = doctorVm.Name,
+                Specialization = doctorVm.Specialization,
+                Status = doctorVm.Status,
+                ImageURL = doctorVm.ImageURL,
+                Phone = doctorVm.Phone,
+                DepartmentID = doctorVm.DepartmentId.Value 
+            };
 
             await _doctorService.AddDoctorAsync(doctor);
+
             return RedirectToAction(nameof(AllDoctors));
         }
 
@@ -94,6 +95,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 
             var doctorVm = new DoctorVM
             {
+                Id = doctor.DoctorID,
                 Name = doctor.Name,
                 Specialization = doctor.Specialization,
                 Status = doctor.Status,
@@ -121,7 +123,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             await _doctorService.UpdateDoctorAsync(oldDoctor);
             return RedirectToAction(nameof(AllDoctors));
         }
-        [HttpPost]
         public async Task DeleteDoctor(int id)
         {
             var doctor = await _doctorService.GetDoctorByIdAsync(id);

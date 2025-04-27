@@ -30,9 +30,14 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                     BirthDate = patient.BirthDate,
                     GenderType = patient.GenderType,
                     PhoneNumber= patient.PhoneNumber,
-                    Status = patient.Status
+                    Status = patient.Status,
+                    Age = DateTime.Now.Year - patient.BirthDate.Year
 
-                };
+            };
+                if (DateTime.Now.DayOfYear < patient.BirthDate.DayOfYear)
+                {
+                    patientVM.Age--;
+                }
                 patientsList.Add(patientVM);
             }
             return View(patientsList);
@@ -101,7 +106,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             await _patientService.UpdatePatientAsync(oldPatient);
             return RedirectToAction(nameof(AllPatients));
         }
-        [HttpPost]
         public async Task DeletePatient(int id)
         {
             var patient = await _patientService.GetPatientByIdAsync(id);

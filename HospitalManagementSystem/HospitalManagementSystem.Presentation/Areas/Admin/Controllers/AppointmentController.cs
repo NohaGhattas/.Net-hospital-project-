@@ -12,7 +12,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         {
             _appointmentService = appointmentService;
         }
-        public IActionResult Index()
+        public IActionResult AllAppointments()
         {
             return View();
         }
