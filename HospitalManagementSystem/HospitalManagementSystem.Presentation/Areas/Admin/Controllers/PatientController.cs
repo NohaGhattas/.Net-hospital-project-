@@ -20,7 +20,22 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> AllPatients()
         {
             var patients = await _patientService.GetAllPatientsAsync();
-            return View(patients);
+            var patientsList = new List<PatientVM>();
+            foreach (var patient in patients)
+            {
+                var patientVM = new PatientVM()
+                {
+                    Name = patient.Name,
+                    Address = patient.Address,
+                    BirthDate = patient.BirthDate,
+                    GenderType = patient.GenderType,
+                    PhoneNumber= patient.PhoneNumber,
+                    Status = patient.Status
+
+                };
+                patientsList.Add(patientVM);
+            }
+            return View(patientsList);
         }
         [HttpGet]
         public IActionResult AddPatient()
@@ -44,7 +59,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             };
             await _patientService.AddPatientAsync(patient);
 
-            await _patientService.AddPatientAsync(patient);
             return RedirectToAction(nameof(AllPatients));
         }
 

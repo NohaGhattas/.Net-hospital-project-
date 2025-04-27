@@ -11,6 +11,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Models
 
         [Required]
         public string Name { get; set; }
+        [Required]
         public Gender GenderType { get; set; }
         public string? Status { get; set; }
         public DateTime BirthDate { get; set; }

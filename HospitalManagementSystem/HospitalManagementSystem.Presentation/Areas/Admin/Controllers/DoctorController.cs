@@ -22,7 +22,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             _departmentService = departmentService;
         }
        
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> AllDoctors() {
             var doctors = await _doctorService.GetAllDoctorsAsync();
             var doctorsList = new List<DoctorVM>();

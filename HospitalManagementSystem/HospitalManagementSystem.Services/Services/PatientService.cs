@@ -1,6 +1,8 @@
-﻿using HospitalManagementSystem.Data.Repositories.Interfaces;
+﻿using HospitalManagementSystem.Data;
+using HospitalManagementSystem.Data.Repositories.Interfaces;
 using HospitalManagementSystem.Models.Patients;
 using HospitalManagementSystem.Services.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,12 @@ namespace HospitalManagementSystem.Services.Services
     public class PatientService : IPatientService
     {
         private readonly IGenericRepository<Patient> _patientRepository;
+        private readonly ApplicationDbContext _appContext;
 
-        public PatientService(IGenericRepository<Patient> patientRepository)
+        public PatientService(IGenericRepository<Patient> patientRepository, ApplicationDbContext appContext)
         {
             _patientRepository = patientRepository;
+            _appContext = appContext;
         }
         public async Task AddPatientAsync(Patient patient)
         {
@@ -42,6 +46,15 @@ namespace HospitalManagementSystem.Services.Services
         public async Task UpdatePatientAsync(Patient patient)
         {
             _patientRepository.Update(patient);
+        }
+        public async Task<int> GetNewPatientsTodayAsync()
+        {
+            var today = DateTime.Today;
+            var newPatientsToday = await _appContext.Patients
+                .Where(p => p.CreatedDate.Date == today) 
+                .ToListAsync();
+
+            return newPatientsToday.Count();
         }
     }
 }
