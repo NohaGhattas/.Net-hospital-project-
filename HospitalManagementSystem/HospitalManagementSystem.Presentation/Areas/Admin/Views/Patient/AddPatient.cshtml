@@ -12,6 +12,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
+                                <form asp-area="Admin" asp-controller="Patient"asp-action="AddPatient" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="name1">Name</label>
                                     <input type="text" asp-for="@Model.Name" class="form-control" id="name1" placeholder="Enter your name" />
@@ -71,9 +72,10 @@
                 </div>
             </div>
             <div class="card-action">
-                <button class="btn btn-success">Submit</button>
-                <button class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <button asp-area="Admin" asp-action="AllPatients" asp-controller="Patient" class="btn btn-danger">Cancel</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

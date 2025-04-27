@@ -11,7 +11,7 @@ namespace HospitalManagementSystem.Services.Services.Interfaces
     {
         Task<IEnumerable<Department>> GetAllDepartmentsAsync();
         Task<Department> GetDepartmentByIdAsync(int id);
-        Task AddDoctorAsync(Department department);
+        Task AddDepartmentAsync(Department department);
         Task UpdateDepartmentAsync(Department department);
         Task DeleteDepartmentAsync(int id);
     }
