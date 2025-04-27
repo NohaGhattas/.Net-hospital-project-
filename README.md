@@ -65,13 +65,13 @@ HospitalManagementSystem/
 	├── HospitalManagementSystem.Services/
 	│	├── Helpers/ 	
 	│	├── Services/
-    │   │   ├── Interfaces/  		
+	│	│	├── Interfaces/  		
 	├── HospitalManagementSystem.Data/
 	│	├── Migrations/ 	
 	│	├── Repositories/
-    │   │   ├── Interfaces/
+	│   │	├── Interfaces/
 	│   │   ├── GenericRepository.cs
-    │   ├── ApplicationDbContext.cs	
+	│	├── ApplicationDbContext.cs	
 	├── HospitalManagementSystem.Models/ 
 	│	├── Appointments/ 	
 	│	├── Contacts/ 	
