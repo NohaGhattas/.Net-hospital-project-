@@ -22,6 +22,8 @@ records.
 - About page that show the history of the hospital.
 - Contact us page which show the address of the hospital, its phone number and direct link to communicate over WhatsApp,
 the working hours, direct links to the hospital social media accounts, and an embedded Google Maps location.
+- In Areas of Admin, There are many CRUD (Insert and Edit) operations of(Patients/Doctors/Departments) and Dashboard 
+
 
 ## In Progress
 - Point 1.

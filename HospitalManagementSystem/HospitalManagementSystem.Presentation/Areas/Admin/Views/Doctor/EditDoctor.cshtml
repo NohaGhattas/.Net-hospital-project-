@@ -18,19 +18,26 @@
                                 <div class="form-group">
                                     <label for="name1">Name</label>
                                     <input type="text" asp-for="@Model.Name" value="@Model.Name" class="form-control" id="name1"  />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+
                                 </div>
 
                                 <div class="form-group">
                                     <label for="spec">Specialization</label>
                                     <input type="text" asp-for="@Model.Specialization" value="@Model.Specialization" class="form-control" id="spec" />
+                                    <span asp-validation-for="Specialization" class="text-danger"></span>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="stat">Status</label>
                                     <input type="text" asp-for="@Model.Status" value="@Model.Status" class="form-control" id="stat"  />
+
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone Number</label>
                                     <input type="text" asp-for="@Model.Phone" value="@Model.Phone"class="form-control" id="phone"  />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+
                                 </div>
 
                                 <div class="form-group">

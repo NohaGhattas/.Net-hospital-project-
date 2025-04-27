@@ -12,38 +12,30 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
-                                <form asp-action="AddDepartment" method="post" enctype="multipart/form-data">
+                                <form asp-area="Admin" asp-controller="Department" asp-action="AddDepartment" method="post">
+                                    @Html.AntiForgeryToken()
+
                                     <div class="form-group">
                                         <label for="name1">Name</label>
-                                        <input type="text" asp-for="@Model.Name" class="form-control" id="name1" placeholder="Enter department name" />
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @id = "name1", placeholder = "Enter department name" })
                                     </div>
 
                                     <div class="form-group">
                                         <label for="des">Description</label>
-                                        <input type="text" asp-for="@Model.Description" class="form-control" id="des" placeholder="Enter Description" />
+                                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control", @id = "des", placeholder = "Enter description" })
                                     </div>
-                                    <div class="card-action">
 
-                                        <button type="submit"class="btn btn-success">Submit</button>
-                                        <button asp-area ="Admin" asp-action="AllDepartments" asp-controller="Department"class="btn btn-danger">Cancel</button>
+                                    <div class="card-action">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <a asp-area="Admin" asp-action="AllDepartments" asp-controller="Department" class="btn btn-danger">Cancel</a>
                                     </div>
                                 </form>
 
-
-
                             </div>
-
                         </div>
-
-
                     </div>
-
-
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-
-

@@ -38,10 +38,8 @@
                                             }
                                         </td>
                                         <td>
-                                            <a class = "btn btn-success"asp-area="Admin" asp-controller="Doctor" asp-action="EditDoctor" asp-route-id="@d.Id">Edit</a> |
-                                            <form asp-area="Admin" asp-controller="Doctor" asp-action="DeleteDoctor" asp-route-id="@d.Id" method="post" style="display:inline">
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this doctor?');">Delete</button>
-                                            </form>
+                                            <a href="javascript:void(0);" class="btn btn-success" onclick="window.location.href='@Url.Action("EditDoctor", "Doctor", new { id = d.Id })';">Edit</a>
+                                            <a href="Admin/Doctor/DeleteDoctor/@d.Id" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 }

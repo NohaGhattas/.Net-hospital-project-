@@ -27,10 +27,8 @@
                                         <td>@d.Name</td>
                                         <td>@d.Description</td>
                                         <td>
-                                            <a class="btn btn-success" asp-area="Admin" asp-controller="Department" asp-action="EditDepartment" asp-route-id="@d.DepartmentID">Edit</a> |
-                                            <form asp-area="Admin" asp-controller="Department" asp-action="DeleteDepartment" asp-route-id="@d.DepartmentID" method="post" style="display:inline">
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this department?');">Delete</button>
-                                            </form>
+                                            <a href="javascript:void(0);" class="btn btn-success" onclick="window.location.href='@Url.Action("EditDepartment", "Department", new { id = d.DepartmentID })';">Edit</a>
+                                            <a href="Admin/Department/DeleteDepartment/@d.DepartmentID" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 }
@@ -50,12 +48,12 @@
 </div>
 <script>
     $(document).ready(function() {
-      $('#docTable').DataTable({
-        paging: true,
-        pageLength: 10,
-        lengthMenu: [5,10,25],
-        ordering: true,
-        searching: true
-      });
-    });
+        $('#docTable').DataTable({
+            paging: true,
+            pageLength: 10,
+            lengthMenu: [5,10,25],
+            ordering: true,
+            searching: true
+        });
+    }); 
 </script>

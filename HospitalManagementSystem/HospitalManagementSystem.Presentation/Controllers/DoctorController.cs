@@ -21,7 +21,7 @@ namespace HospitalManagementSystem.Presentation.Controllers
             var doctors = await _doctorService.GetAllDoctorsAsync();
             if(doctors == null || !doctors.Any())
             {
-                var errorViewModel = new ErrorViewModel
+                var errorViewModel = new ErrorViewModel()
                 {
                     ErrorType = "404",
                     ErrorMessage = "Unfound Information"
