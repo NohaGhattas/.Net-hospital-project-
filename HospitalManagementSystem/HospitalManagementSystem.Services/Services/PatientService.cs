@@ -14,21 +14,31 @@ namespace HospitalManagementSystem.Services.Services
 {
     public class PatientService : GenericRepository<Patient>,IPatientService
     {
-        private readonly ApplicationDbContext _appContext;
+        private readonly ApplicationDbContext _context;
 
-        public PatientService(ApplicationDbContext appContext):base(appContext) 
+        public PatientService(ApplicationDbContext context):base(context) 
         {
-            _appContext = appContext;
+            _context = context;
         }
       
         public async Task<int> GetNewPatientsTodayAsync()
         {
             var today = DateTime.Today;
-            var newPatientsToday = await _appContext.Patients
+            var newPatientsToday = await _context.Patients
                 .Where(p => p.CreatedDate.Date == today) 
                 .ToListAsync();
 
             return newPatientsToday.Count();
         }
+        public async Task DeletePatient(int id)
+        {
+            var patient = _context.Patients.FirstOrDefault(p => p.PatientID == id);
+            if (patient != null)
+            {
+                patient.Status = "InActive";
+                _context.SaveChanges();
+            }
+        }
+
     }
 }

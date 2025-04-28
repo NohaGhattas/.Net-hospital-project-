@@ -26,8 +26,9 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AllDoctors() {
             var doctors = await _doctorService.GetAllAsync();
+            var activeDoctors = doctors.Where(p => p.Status == "Active").ToList();
             var doctorsList = new List<DoctorVM>();
-            foreach (var doctor in doctors)
+            foreach (var doctor in activeDoctors)
             {
                 var doctorVM = new DoctorVM()
                 {
@@ -156,11 +157,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 
         public async Task<IActionResult> DeleteDoctor(int id)
         {
-            var doctor = await _doctorService.GetByIdAsync(id);
-            if (doctor != null)
-            {
-                doctor.Status = "InActive";
-            }
+           await _doctorService.DeleteDoctor(id);
             return RedirectToAction(nameof(AllDoctors));
         }
 

@@ -10,7 +10,7 @@ namespace HospitalManagementSystem.Services.Services.Interfaces
 {
     public interface IPatientService:IGenericRepository<Patient>
     {
-        
+        Task DeletePatient(int id);
         Task<int> GetNewPatientsTodayAsync();
     }
 }

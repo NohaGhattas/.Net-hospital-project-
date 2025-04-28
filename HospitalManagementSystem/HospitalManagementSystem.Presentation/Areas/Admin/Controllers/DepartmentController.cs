@@ -20,6 +20,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> AllDepartments()
         {
             var departments = await _departmentService.GetAllAsync();
+           
             var departmentsList = new List<DepartmentVM>();
             foreach (var department in departments)
             {

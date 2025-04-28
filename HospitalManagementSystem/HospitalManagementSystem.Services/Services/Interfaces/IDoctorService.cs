@@ -11,7 +11,9 @@ namespace HospitalManagementSystem.Services.Services.Interfaces
 {
     public interface IDoctorService:IGenericRepository<Doctor>
     {
+
+        Task DeleteDoctor(int id);
         
-       
+
     }
 }

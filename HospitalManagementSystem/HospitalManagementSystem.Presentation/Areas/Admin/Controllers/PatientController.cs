@@ -20,8 +20,10 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> AllPatients()
         {
             var patients = await _patientService.GetAllAsync();
+            var activePatient = patients.Where(d => d.Status == "Active").ToList();
+
             var patientsList = new List<PatientVM>();
-            foreach (var patient in patients)
+            foreach (var patient in activePatient)
             {
                 var patientVM = new PatientVM()
                 {
@@ -31,12 +33,12 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                     GenderType = patient.GenderType,
                     PhoneNumber= patient.PhoneNumber,
                     Status = patient.Status,
-                    Age = DateTime.Now.Year - patient.BirthDate.Year
+                    Age = (DateTime.Now.Year) - (patient.BirthDate.Year)
 
             };
                 if (DateTime.Now.DayOfYear < patient.BirthDate.DayOfYear)
                 {
-                    patientVM.Age--;
+                    (patientVM.Age)--;
                 }
                 patientsList.Add(patientVM);
             }
@@ -106,11 +108,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         }
         public async Task<IActionResult> DeletePatient(int id)
         {
-            var patient = await _patientService.GetByIdAsync(id);
-            if (patient != null)
-            {
-                 patient.Status = "InActive";
-            }
+            await _patientService.DeletePatient(id);
             return RedirectToAction(nameof(AllPatients));
 
         }
