@@ -26,8 +26,8 @@ namespace HospitalManagementSystem.Presentation.Controllers
         public async Task<IActionResult> Index(string department = null, string doctorName = null, DateTime? date = null)
         {
 
-            var departments = await _departmentService.GetAllDepartmentsAsync();
-            var doctors = await _doctorService.GetAllDoctorsAsync();
+            var departments = await _departmentService.GetAllAsync();
+            var doctors = await _doctorService.GetAllAsync();
             if (departments == null || !departments.Any())
             {
                 //var errorViewModel = new ErrorViewModel

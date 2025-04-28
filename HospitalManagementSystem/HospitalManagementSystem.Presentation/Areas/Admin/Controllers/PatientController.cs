@@ -19,7 +19,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AllPatients()
         {
-            var patients = await _patientService.GetAllPatientsAsync();
+            var patients = await _patientService.GetAllAsync();
             var patientsList = new List<PatientVM>();
             foreach (var patient in patients)
             {
@@ -62,7 +62,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 BirthDate = patientVM.BirthDate,
                 GenderType = patientVM.GenderType,
             };
-            await _patientService.AddPatientAsync(patient);
+            await _patientService.AddAsync(patient);
 
             return RedirectToAction(nameof(AllPatients));
         }
@@ -71,7 +71,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> EditPatient(int id)
         {
 
-            var patient = await _patientService.GetPatientByIdAsync(id);
+            var patient = await _patientService.GetByIdAsync(id);
             if (patient == null)
                 return NotFound();
 
@@ -91,7 +91,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View(patientVM);
 
-            var oldPatient = await _patientService.GetPatientByIdAsync(patientVM.Id);
+            var oldPatient = await _patientService.GetByIdAsync(patientVM.Id);
             if (oldPatient == null)
                 return NotFound();
 
@@ -101,16 +101,17 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             oldPatient.PhoneNumber = patientVM.PhoneNumber;
             oldPatient.GenderType = patientVM.GenderType;
 
-            await _patientService.UpdatePatientAsync(oldPatient);
+            _patientService.Update(oldPatient);
             return RedirectToAction(nameof(AllPatients));
         }
-        public async Task DeletePatient(int id)
+        public async Task<IActionResult> DeletePatient(int id)
         {
-            var patient = await _patientService.GetPatientByIdAsync(id);
+            var patient = await _patientService.GetByIdAsync(id);
             if (patient != null)
             {
-                await _patientService.DeletePatientAsync(id);
+                 patient.Status = "InActive";
             }
+            return RedirectToAction(nameof(AllPatients));
 
         }
     }

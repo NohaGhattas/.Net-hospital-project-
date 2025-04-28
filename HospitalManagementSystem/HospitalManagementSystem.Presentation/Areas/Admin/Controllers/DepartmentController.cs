@@ -19,7 +19,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AllDepartments()
         {
-            var departments = await _departmentService.GetAllDepartmentsAsync();
+            var departments = await _departmentService.GetAllAsync();
             var departmentsList = new List<DepartmentVM>();
             foreach (var department in departments)
             {
@@ -54,7 +54,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 Description = departmentVm.Description
 
             };
-            await _departmentService.AddDepartmentAsync(department);
+            await _departmentService.AddAsync(department);
 
             return RedirectToAction(nameof(AllDepartments));
         }
@@ -63,7 +63,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> EditDepartment(int id)
         {
 
-            var department = await _departmentService.GetDepartmentByIdAsync(id);
+            var department = await _departmentService.GetByIdAsync(id);
             if (department == null)
                 return NotFound();
 
@@ -82,22 +82,22 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View(departmentVm);
 
-            var oldDepartment = await _departmentService.GetDepartmentByIdAsync(departmentVm.DepartmentID);
+            var oldDepartment = await _departmentService.GetByIdAsync(departmentVm.DepartmentID);
             if (oldDepartment == null)
                 return NotFound();
 
             oldDepartment.Name = departmentVm.Name;
             oldDepartment.Description = departmentVm.Description;
             
-            await _departmentService.UpdateDepartmentAsync(oldDepartment);
+             _departmentService.Update(oldDepartment);
             return RedirectToAction(nameof(AllDepartments));
         }
         public async Task<IActionResult> DeleteDepartment(int id)
         {
-            var department = await _departmentService.GetDepartmentByIdAsync(id);
+            var department = await _departmentService.GetByIdAsync(id);
             if (department != null)
             {
-                await _departmentService.DeleteDepartmentAsync(id);
+                 _departmentService.Delete(department);
                 TempData["SuccessMessage"] = "Department deleted successfully!";
             }
             else

@@ -1,4 +1,5 @@
-﻿using HospitalManagementSystem.Models.Doctors;
+﻿using HospitalManagementSystem.Data.Repositories.Interfaces;
+using HospitalManagementSystem.Models.Doctors;
 using HospitalManagementSystem.Models.Patients;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,9 @@ using System.Threading.Tasks;
 
 namespace HospitalManagementSystem.Services.Services.Interfaces
 {
-    public interface IDoctorService
+    public interface IDoctorService:IGenericRepository<Doctor>
     {
-        Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
-        Task<Doctor> GetDoctorByIdAsync(int id);
-        Task<Doctor> GetDoctorByNameAsync(string name, string? departmentName = null);
-        Task AddDoctorAsync(Doctor doctor);
-        Task UpdateDoctorAsync(Doctor doctor);
-        Task DeleteDoctorAsync(int id);
+        
+       
     }
 }

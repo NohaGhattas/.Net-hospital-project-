@@ -25,7 +25,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AllAppointments()
         {
-            var appointments = await _appointmentService.GetAllAppointmentsAsync();
+            var appointments = await _appointmentService.GetAllAsync();
             var appointmentList = new List<AppointmentVM>();
             foreach (var appointment in appointments)
             {
@@ -47,17 +47,17 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         {
             var appointmentVM = new AppointmentVM()
             {
-                Patients = (await _patientService.GetAllPatientsAsync()).Select(p => new SelectListItem
+                Patients = (await _patientService.GetAllAsync()).Select(p => new SelectListItem
                 {
                     Value = p.PatientID.ToString(),
                     Text = p.Name
                 }).ToList(),
-                Doctors = (await _doctorService.GetAllDoctorsAsync()).Select(p => new SelectListItem
+                Doctors = (await _doctorService.GetAllAsync()).Select(p => new SelectListItem
                 {
                     Value = p.DoctorID.ToString(),
                     Text = p.Name
                 }).ToList(),
-                Schedules = (await _scheduleService.GetAllSchedulesAsync()).Select(p => new SelectListItem
+                Schedules = (await _scheduleService.GetAllAsync()).Select(p => new SelectListItem
                 {
                     Value = p.ScheduleID.ToString(),
                     Text = $"{p.StartDate}-{p.EndDate}"
@@ -76,17 +76,17 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             {
 
 
-                appointmentVM.Patients = (await _patientService.GetAllPatientsAsync()).Select(p => new SelectListItem
+                appointmentVM.Patients = (await _patientService.GetAllAsync()).Select(p => new SelectListItem
                 {
                     Value = p.PatientID.ToString(),
                     Text = p.Name
                 }).ToList();
-                appointmentVM.Doctors = (await _doctorService.GetAllDoctorsAsync()).Select(d => new SelectListItem
+                appointmentVM.Doctors = (await _doctorService.GetAllAsync()).Select(d => new SelectListItem
                 {
                     Value = d.DoctorID.ToString(),
                     Text = d.Name
                 }).ToList();
-                appointmentVM.Schedules = (await _scheduleService.GetAllSchedulesAsync()).Select(s => new SelectListItem
+                appointmentVM.Schedules = (await _scheduleService.GetAllAsync()).Select(s => new SelectListItem
                 {
                     Value = s.ScheduleID.ToString(),
                     Text = $"{s.StartDate} - {s.EndDate}"
@@ -105,13 +105,13 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 ScheduleID = appointmentVM.ScheduleID
             };
 
-            await _appointmentService.AddAppointmentAsync(appointment);
+            await _appointmentService.AddAsync(appointment);
             return RedirectToAction(nameof(AllAppointments));
         }
         [HttpGet]
              public async Task<IActionResult> EditAppointment(int id)
         {
-            var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
+            var appointment = await _appointmentService.GetByIdAsync(id);
             if (appointment == null)
             {
                 return NotFound();
@@ -125,17 +125,17 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 PatientID = appointment.PatientID,
                 DoctorID = appointment.DoctorID,
                 ScheduleID = appointment.ScheduleID,
-                Patients = (await _patientService.GetAllPatientsAsync()).Select(p => new SelectListItem
+                Patients = (await _patientService.GetAllAsync()).Select(p => new SelectListItem
                 {
                     Value = p.PatientID.ToString(),
                     Text = p.Name
                 }).ToList(),
-                Doctors = (await _doctorService.GetAllDoctorsAsync()).Select(d => new SelectListItem
+                Doctors = (await _doctorService.GetAllAsync()).Select(d => new SelectListItem
                 {
                     Value = d.DoctorID.ToString(),
                     Text = d.Name
                 }).ToList(),
-                Schedules = (await _scheduleService.GetAllSchedulesAsync()).Select(s => new SelectListItem
+                Schedules = (await _scheduleService.GetAllAsync()).Select(s => new SelectListItem
                 {
                     Value = s.ScheduleID.ToString(),
                     Text = $"{s.StartDate} - {s.EndDate}"
@@ -154,17 +154,17 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                appointmentVM.Patients = (await _patientService.GetAllPatientsAsync()).Select(p => new SelectListItem
+                appointmentVM.Patients = (await _patientService.GetAllAsync()).Select(p => new SelectListItem
                 {
                     Value = p.PatientID.ToString(),
                     Text = p.Name
                 }).ToList();
-                appointmentVM.Doctors = (await _doctorService.GetAllDoctorsAsync()).Select(d => new SelectListItem
+                appointmentVM.Doctors = (await _doctorService.GetAllAsync()).Select(d => new SelectListItem
                 {
                     Value = d.DoctorID.ToString(),
                     Text = d.Name
                 }).ToList();
-                appointmentVM.Schedules = (await _scheduleService.GetAllSchedulesAsync()).Select(s => new SelectListItem
+                appointmentVM.Schedules = (await _scheduleService.GetAllAsync()).Select(s => new SelectListItem
                 {
                     Value = s.ScheduleID.ToString(),
                     Text = $"{s.StartDate} - {s.EndDate}"
@@ -172,7 +172,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 
                 return View(appointmentVM);
             }
-            var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
+            var appointment = await _appointmentService.GetByIdAsync(id);
             if (appointment == null)
             {
                 return NotFound();
@@ -184,19 +184,19 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             appointment.DoctorID = appointmentVM.DoctorID;
             appointment.ScheduleID = appointmentVM.ScheduleID;
 
-            await _appointmentService.UpdateAppointmentAsync(appointment);
+             _appointmentService.Update(appointment);
             return RedirectToAction(nameof(AllAppointments));
 
 
         }
         public async Task<IActionResult> DeleteAppointment(int id)
         {
-            var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
+            var appointment = await _appointmentService.GetByIdAsync(id);
             if (appointment == null)
             {
                 return NotFound();
             }
-            await _appointmentService.DeleteAppointmentAsync(id);
+            appointment.Status = "InActive";
 
             return RedirectToAction(nameof(AllAppointments));
         }
