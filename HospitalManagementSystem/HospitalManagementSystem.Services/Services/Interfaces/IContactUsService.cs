@@ -1,13 +1,10 @@
-﻿using HospitalManagementSystem.Models.Contacts;
+﻿using HospitalManagementSystem.Data.Repositories.Interfaces;
+using HospitalManagementSystem.Models.Contacts;
 
 namespace HospitalManagementSystem.Services.Services.Interfaces
 {
-    public interface IContactUsService
+    public interface IContactUsService:IGenericRepository<ContactUs>
     {
-        Task<IEnumerable<ContactUs>> GetAllHospitalsAsync();
-        Task<ContactUs> GetHospitalInfoByIdAsync(int id);
-        Task AddHospitalInfoAsync(ContactUs hospitalInfo);
-        void UpdateHospitalInfoAsync(ContactUs hospitalInfo);
-        Task DeleteHospitalInfoAsync(int id);
+       
     }
 }

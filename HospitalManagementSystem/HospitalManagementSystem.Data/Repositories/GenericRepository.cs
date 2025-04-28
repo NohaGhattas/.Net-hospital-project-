@@ -55,7 +55,7 @@ namespace HospitalManagementSystem.Data.Repositories
 
             return await query.FirstOrDefaultAsync();
         }
-
+      
         public void Update(T entity)
         {
             _context.Set<T>().Update(entity);

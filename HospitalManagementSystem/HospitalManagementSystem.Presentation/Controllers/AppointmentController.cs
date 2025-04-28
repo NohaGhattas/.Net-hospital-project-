@@ -36,7 +36,7 @@ namespace HospitalManagementSystem.Presentation.Controllers
                 return View(model);
             }
 
-            var doctor = await _doctorService.GetDoctorByNameAsync(model.DoctorName, model.Specialization);
+            var doctor = await _doctorService.GetByNameAsync(model.DoctorName, model.Specialization);
 
             if (doctor == null)
             {
@@ -58,7 +58,7 @@ namespace HospitalManagementSystem.Presentation.Controllers
                 AppointmentTime = DateTime.Now.TimeOfDay
             };
 
-            await _appointmentService.AddAppointmentAsync(appointment);
+            await _appointmentService.AddAsync(appointment);
 
             return RedirectToAction("Confirmation", new { appointmentId = appointment.AppointmentID });
         }
@@ -66,7 +66,7 @@ namespace HospitalManagementSystem.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Confirmation(int appointmentId)
         {
-            var appointment = await _appointmentService.GetAppointmentByIdAsync(appointmentId);
+            var appointment = await _appointmentService.GetByIdAsync(appointmentId);
 
             if (appointment == null)
             {

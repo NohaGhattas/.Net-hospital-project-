@@ -23,10 +23,10 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var dashboard = new DashboardVM();
-            dashboard.Appointments = (await _appointmentService.GetAllAppointmentsAsync()).Count();
-            dashboard.Departments = (await _departmentService.GetAllDepartmentsAsync()).Count();
-            dashboard.PatientCount =(await _patientService.GetAllPatientsAsync()).Count();
-            dashboard.DoctorCount =(await _doctorService.GetAllDoctorsAsync()).Count();
+            dashboard.Appointments = (await _appointmentService.GetAllAsync()).Count();
+            dashboard.Departments = (await _departmentService.GetAllAsync()).Count();
+            dashboard.PatientCount =(await _patientService.GetAllAsync()).Count();
+            dashboard.DoctorCount =(await _doctorService.GetAllAsync()).Count();
             dashboard.NewPatientCount = await _patientService.GetNewPatientsTodayAsync();
             return View(dashboard);
         }

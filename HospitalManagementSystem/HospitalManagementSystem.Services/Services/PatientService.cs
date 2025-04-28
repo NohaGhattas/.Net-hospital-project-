@@ -1,4 +1,5 @@
 ﻿using HospitalManagementSystem.Data;
+using HospitalManagementSystem.Data.Repositories;
 using HospitalManagementSystem.Data.Repositories.Interfaces;
 using HospitalManagementSystem.Models.Patients;
 using HospitalManagementSystem.Services.Services.Interfaces;
@@ -11,42 +12,15 @@ using System.Threading.Tasks;
 
 namespace HospitalManagementSystem.Services.Services
 {
-    public class PatientService : IPatientService
+    public class PatientService : GenericRepository<Patient>,IPatientService
     {
-        private readonly IGenericRepository<Patient> _patientRepository;
         private readonly ApplicationDbContext _appContext;
 
-        public PatientService(IGenericRepository<Patient> patientRepository, ApplicationDbContext appContext)
+        public PatientService(ApplicationDbContext appContext):base(appContext) 
         {
-            _patientRepository = patientRepository;
             _appContext = appContext;
         }
-        public async Task AddPatientAsync(Patient patient)
-        {
-            await _patientRepository.AddAsync(patient);
-        }
-
-        public async Task DeletePatientAsync(int id)
-        {
-            var patient = await _patientRepository.GetByIdAsync(id);
-            if (patient != null)
-                _patientRepository.Delete(patient);
-        }
-
-        public async Task<IEnumerable<Patient>> GetAllPatientsAsync()
-        {
-            return await _patientRepository.GetAllAsync();
-        }
-
-        public async Task<Patient> GetPatientByIdAsync(int id)
-        {
-            return await _patientRepository.GetByIdAsync(id);
-        }
-
-        public async Task UpdatePatientAsync(Patient patient)
-        {
-            _patientRepository.Update(patient);
-        }
+      
         public async Task<int> GetNewPatientsTodayAsync()
         {
             var today = DateTime.Today;

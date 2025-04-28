@@ -16,7 +16,7 @@ namespace HospitalManagementSystem.Presentation.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var hospitals = await _contactUsService.GetAllHospitalsAsync();
+            var hospitals = await _contactUsService.GetAllAsync();
             var hospitalInfo = hospitals.FirstOrDefault();
 
             if (hospitalInfo == null)

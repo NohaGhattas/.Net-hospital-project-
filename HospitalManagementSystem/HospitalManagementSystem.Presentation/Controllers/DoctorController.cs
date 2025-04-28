@@ -18,7 +18,7 @@ namespace HospitalManagementSystem.Presentation.Controllers
         {
             var doctorsVM = new List<DoctorViewModel>();
 
-            var doctors = await _doctorService.GetAllDoctorsAsync();
+            var doctors = await _doctorService.GetAllAsync();
             if(doctors == null || !doctors.Any())
             {
                 var errorViewModel = new ErrorViewModel()

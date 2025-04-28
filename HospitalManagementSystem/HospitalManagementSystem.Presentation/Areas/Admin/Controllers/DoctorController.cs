@@ -25,7 +25,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
        
         [HttpGet]
         public async Task<IActionResult> AllDoctors() {
-            var doctors = await _doctorService.GetAllDoctorsAsync();
+            var doctors = await _doctorService.GetAllAsync();
             var doctorsList = new List<DoctorVM>();
             foreach (var doctor in doctors)
             {
@@ -48,7 +48,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AddDoctor()
         {
-            var departments = await _departmentService.GetAllDepartmentsAsync();
+            var departments = await _departmentService.GetAllAsync();
             var model = new DoctorVM()
             {
                 Departments = departments.Select(d => new SelectListItem
@@ -64,7 +64,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                doctorVm.Departments = (await _departmentService.GetAllDepartmentsAsync())
+                doctorVm.Departments = (await _departmentService.GetAllAsync())
                     .Select(d => new SelectListItem { Value = d.DepartmentID.ToString(), Text = d.Name })
                     .ToList();
                 return View(doctorVm);
@@ -83,7 +83,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 SpecialtyLevel = doctorVm.SpecialityLevel
             };
 
-            await _doctorService.AddDoctorAsync(doctor);
+            await _doctorService.AddAsync(doctor);
 
             return RedirectToAction(nameof(AllDoctors));
         }
@@ -92,14 +92,14 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> EditDoctor(int id)
         {
 
-            var doctor = await _doctorService.GetDoctorByIdAsync(id);
+            var doctor = await _doctorService.GetByIdAsync(id);
         
             if (doctor == null)
             {
                 return NotFound();
             }
 
-            var departments =(await _departmentService.GetAllDepartmentsAsync()).Select(d => new SelectListItem
+            var departments =(await _departmentService.GetAllAsync()).Select(d => new SelectListItem
                                      {
                                          Value = d.DepartmentID.ToString(),
                                          Text = d.Name
@@ -122,11 +122,11 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> EditDoctor(EditDoctorVM editDoctorVM)
         {
-            var doctor = await _doctorService.GetDoctorByIdAsync(editDoctorVM.Id);
+            var doctor = await _doctorService.GetByIdAsync(editDoctorVM.Id);
             if (doctor == null)
                 return NotFound();
 
-            var departments = await _departmentService.GetAllDepartmentsAsync();
+            var departments = await _departmentService.GetAllAsync();
             if (departments == null || !departments.Any())
             {
                 return View("Error"); 
@@ -156,10 +156,10 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 
         public async Task<IActionResult> DeleteDoctor(int id)
         {
-            var doctor = await _doctorService.GetDoctorByIdAsync(id);
+            var doctor = await _doctorService.GetByIdAsync(id);
             if (doctor != null)
             {
-                await _doctorService.DeleteDoctorAsync(id);
+                doctor.Status = "InActive";
             }
             return RedirectToAction(nameof(AllDoctors));
         }
