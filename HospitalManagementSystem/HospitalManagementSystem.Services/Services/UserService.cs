@@ -36,14 +36,14 @@ namespace HospitalManagementSystem.Services.Services
         }
         public async Task<UsersDto> GetUserByUserNameAsync(string username)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == username);
+            var user = await _context.CustomUsers.FirstOrDefaultAsync(x => x.UserName == username);
             var userdto = _mapper.Map<UsersDto>(user);
             return userdto;
 
         }
         public async Task<bool> IsExist(string username)
         {
-           return await _context.Users.AnyAsync(u => u.UserName == username);
+           return await _context.CustomUsers.AnyAsync(u => u.UserName == username);
         }
         
     }

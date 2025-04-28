@@ -4,11 +4,13 @@ using HospitalManagementSystem.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HospitalManagementSystem.Controllers
+namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    //[Route("api/[controller]")]
+    //[ApiController]
+    [Area("Admin")]
+    [Route("Admin/[controller]/[action]")]
+    public class AuthController : Controller
     {
         private readonly IAuthService _authService;
 
@@ -17,7 +19,7 @@ namespace HospitalManagementSystem.Controllers
             _authService = authService;
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
             var response = await _authService.Login(loginDto);

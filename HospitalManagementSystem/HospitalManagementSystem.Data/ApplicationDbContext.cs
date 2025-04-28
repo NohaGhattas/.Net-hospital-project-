@@ -3,8 +3,11 @@ using HospitalManagementSystem.Models.Contacts;
 using HospitalManagementSystem.Models.Doctors;
 using HospitalManagementSystem.Models.Patients;
 using HospitalManagementSystem.Models.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace HospitalManagementSystem.Data
 {
@@ -26,6 +29,16 @@ namespace HospitalManagementSystem.Data
         public DbSet<Role> CustomRoles { get; set; }
         public DbSet<ContactUs> ContactUsMessages { get; set; }
 
+
+        public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            }
+        }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Doctor>()
@@ -98,8 +111,26 @@ namespace HospitalManagementSystem.Data
                 .WithMany(u => u.UserRoles)
                 .HasForeignKey(ur => ur.RoleID)
                 .OnDelete(DeleteBehavior.Restrict);
-
+            
+           
             base.OnModelCreating(modelBuilder);
+            byte[] passwordHash;
+            byte[] passwordSalt;
+            CreatePasswordHash("123456", out passwordHash, out passwordSalt);
+
+            modelBuilder.Entity<User>().HasData(
+           new User
+           {
+               UserID = 4, 
+               UserName = "test2",
+               Email = "test@example.com",
+               StoredSalt = passwordSalt,
+               CreatedBy = 1,
+               ModifiedBy = 1,
+               PasswordHash = Convert.ToBase64String(passwordHash),
+
+           }
+       );
         }
     }
 }

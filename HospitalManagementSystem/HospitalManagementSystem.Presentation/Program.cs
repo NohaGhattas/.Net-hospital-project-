@@ -95,9 +95,6 @@ namespace HospitalManagementSystem.Presentation
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.UseAuthorization();
-
-           
             app.MapRazorPages();
 
             app.Run();

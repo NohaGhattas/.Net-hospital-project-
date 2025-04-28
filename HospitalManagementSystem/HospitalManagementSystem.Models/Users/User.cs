@@ -13,7 +13,7 @@ namespace HospitalManagementSystem.Models.Users
 
         [Required]
         public string? PasswordHash { get; set; }
-
+        public byte[]? StoredSalt{ get; set; }
         [Required]
         [EmailAddress]
         public string? Email { get; set; }

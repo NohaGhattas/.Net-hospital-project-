@@ -37,7 +37,7 @@ namespace HospitalManagementSystem.Services
             if (!await ValidateUser(loginDto))
                 return null;
 
-            var user = await GetUserByUsername(loginDto.Username);
+            var user = await GetUserByUsername(loginDto.UserName);
             var token = await GenerateJwtToken(user);
 
             var roles = _context.UserRoles
@@ -131,11 +131,11 @@ namespace HospitalManagementSystem.Services
 
         public async Task<bool> ValidateUser(LoginDto loginDto)
         {
-            var user = await GetUserByUsername(loginDto.Username);
+            var user = await GetUserByUsername(loginDto.UserName);
             if (user == null)
                 return false;
 
-            return VerifyPasswordHash(loginDto.Password, Convert.FromBase64String(user.PasswordHash));
+            return VerifyPasswordHash(loginDto.Password, Convert.FromBase64String(user.PasswordHash),user.StoredSalt);
         }
 
         public async Task<bool> UserExists(string username)
