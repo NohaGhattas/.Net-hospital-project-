@@ -13,34 +13,36 @@
                         <table id="docTable" class="display" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>#</th>
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>BirthDate</th>
                                     <th>Age</th>
                                     <th>GenderType</th>
                                     <th>Address</th>
-                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @{
+                                    int c = 1;
+                                }
                                 @foreach (var d in Model)
                                 {
                                     <tr>
-                                        <td>@d.Id</td>
+                                        <td>@c</td>
                                         <td>@d.Name</td>
                                         <td>@d.PhoneNumber</td>
                                         <td>@d.BirthDate.ToString("dd/MM/yyyy")</td>
                                         <th>@d.Age</th>
                                         <td>@d.GenderType.ToString()</td>
                                         <td>@d.Address</td>
-                                        <td>@d.Status</td>
                                         <td>
                                             <a href="javascript:void(0);" class="btn btn-success" onclick="window.location.href='@Url.Action("EditPatient", "Patient", new { id = d.Id })';">Edit</a>
                                             <a href="Admin/Patient/DeletePatient/@d.Id" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
+                                    c++;
                                 }
                             </tbody>
                         </table>

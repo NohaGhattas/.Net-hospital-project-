@@ -121,7 +121,7 @@ namespace HospitalManagementSystem.Data
             modelBuilder.Entity<User>().HasData(
            new User
            {
-               UserID = 4, 
+               UserID = 4,
                UserName = "test2",
                Email = "test@example.com",
                StoredSalt = passwordSalt,

@@ -13,26 +13,27 @@
                         <table id="docsTable" class="display" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>#</th>
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Specialization</th>
                                     <th>Speciality Level</th>
-                                    <th>Status</th>
                                     <th>Photo</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @{
+                                    int c = 1;
+                                }
                                 @foreach (var d in Model)
                                 {
                                     <tr>
-                                        <td>@d.Id</td>
+                                        <td>@c</td>
                                         <td>@d.Name</td>
                                         <td>@d.Phone</td>
                                         <td>@d.Specialization</td>
                                         <td>@d.SpecialityLevel</td>
-                                        <td>@d.Status</td>
                                         <td>
                                             @if (!string.IsNullOrEmpty(d.ImageURL))
                                             {
@@ -44,6 +45,7 @@
                                             <a href="Admin/Doctor/DeleteDoctor/@d.Id" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
+                                    c++;
                                 }
                             </tbody>
                         </table>

@@ -13,17 +13,20 @@
                         <table id="docTable" class="display" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>#</th>
                                     <th>Name</th>
                                     <th>Description</th>
-                                   
+
                                 </tr>
                             </thead>
                             <tbody>
+                                @{
+                                    int c = 1;
+                                }
                                 @foreach (var d in Model)
                                 {
                                     <tr>
-                                        <td>@d.DepartmentID</td>
+                                        <td>@c</td>
                                         <td>@d.Name</td>
                                         <td>@d.Description</td>
                                         <td>
@@ -31,6 +34,9 @@
                                             <a href="Admin/Department/DeleteDepartment/@d.DepartmentID" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
+                                    
+                                    c++;
+                                       
                                 }
                             </tbody>
                         </table>
