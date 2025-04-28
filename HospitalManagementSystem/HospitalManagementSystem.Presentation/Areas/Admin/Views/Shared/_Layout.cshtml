@@ -1,8 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <title>Hospital - Admin</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
           name="viewport" />
     <base href="~/" />
@@ -31,13 +33,23 @@
     </script> 
 
     <!-- CSS Files -->
+    <style>
+        ul {
+            list-style-type: none;
+        }
+
+        .nav-collapse {
+            list-style-type: none;
+            padding-left: 0;
+        }
+    </style>
    
     <link rel="stylesheet" href="Css/cssDash/bootstrap.min.css" />
     <link rel="stylesheet" href="Css/cssDash/plugins.min.css" />
     <link rel="stylesheet" href="Css/cssDash/kaiadmin.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link asp-href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="Css/cssDash/demo.css" />
+   
 </head>
 <body>
     <div class="wrapper">
@@ -68,7 +80,7 @@
                     <ul class="nav nav-secondary">
                         <li class="nav-item active">
                             <a 
-                               href="Admin/Dashboard"
+                               href="Admin/Home/Index"
                                class="collapsed"
                                aria-expanded="false">
                                 <i class="fas-solid fas-house" style="color:white"></i>
@@ -89,12 +101,12 @@
                                     <li>
                                         <a href="Admin/Doctor/AddDoctor">
                                             <i class="fa-solid fa-user-plus"></i>
-                                            <span class="sub-item">Add new Doctor</span>
+                                            <span class="sub-item1">Add new Doctor</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="Admin/Doctor/AllDoctors">
-                                            <span class="sub-item">AllDoctors</span>
+                                            <span class="sub-item1">AllDoctors</span>
                                         </a>
                                     </li>
                                    
@@ -113,12 +125,12 @@
                                     <li>
                                         <a href="~/Admin/Patient/AddPatient">
                                             <i class="fa-solid fa-user-plus"></i>
-                                            <span class="sub-item">Add new Patient</span>
+                                            <span class="sub-item1">Add new Patient</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="Admin/Patient/AllPatients">
-                                            <span class="sub-item">All Patients</span>
+                                            <span class="sub-item1">All Patients</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -135,12 +147,12 @@
                                     <li>
                                         <a href="~/Admin/Department/AddDepartment">
                                             <i class="fa-solid fa-user-plus"></i>
-                                            <span class="sub-item">Add new Department</span>
+                                            <span class="sub-item1">Add new Department</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="Admin/Department/AllDepartments">
-                                            <span class="sub-item">All Departments</span>
+                                            <span class="sub-item1">All Departments</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -155,13 +167,8 @@
                             <div class="collapse" id="app">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="forms/forms.html">
-                                            <span class="sub-item">Add Appointment</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms/forms.html">
-                                            <span class="sub-item">All Appointments</span>
+                                        <a href="Admin/Appointment/AllAppointments">
+                                            <span class="sub-item1">All Appointments</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -14,7 +14,6 @@ namespace HospitalManagementSystem.Services.Services.Interfaces
         Task AddScheduleAsync(Schedule schedule);
         Task UpdateScheduleAsync(Schedule schedule);
         Task DeleteScheduleAsync(int id);
-        Task<Schedule> GetScheduleByDoctorIdAsync(int id);
 
     }
 }

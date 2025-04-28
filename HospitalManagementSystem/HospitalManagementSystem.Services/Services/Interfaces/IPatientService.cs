@@ -14,5 +14,6 @@ namespace HospitalManagementSystem.Services.Services.Interfaces
         Task AddPatientAsync(Patient patient);
         Task UpdatePatientAsync(Patient patient);
         Task DeletePatientAsync(int id);
+        Task<int> GetNewPatientsTodayAsync();
     }
 }

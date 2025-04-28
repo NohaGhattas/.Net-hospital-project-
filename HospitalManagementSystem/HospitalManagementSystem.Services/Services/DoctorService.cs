@@ -42,6 +42,11 @@ namespace HospitalManagementSystem.Services.Services
             return await _doctorRepository.GetByIdAsync(id);
         }
 
+        public async Task<Doctor> GetDoctorByNameAsync(string name, string? departmentName = null)
+        {
+            return await _doctorRepository.GetByNameAsync(name, departmentName);
+        }
+
         public async Task UpdateDoctorAsync(Doctor doctor)
         {
              _doctorRepository.Update(doctor);

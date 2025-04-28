@@ -23,10 +23,12 @@ namespace HospitalManagementSystem.Presentation
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("HospitalManagementSystem.Data")));
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            builder.Services.AddScoped<IPatientService,PatientService>();
+            builder.Services.AddScoped<IPatientService, PatientService>();
             builder.Services.AddScoped<IDoctorService, DoctorService>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IContactUsService, ContactUsService>();
+            builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+            builder.Services.AddScoped<IScheduleService, ScheduleService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -87,7 +89,7 @@ namespace HospitalManagementSystem.Presentation
 
             app.MapControllerRoute(
      name: "areas",
-     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+     pattern: "{area:exists}/{controller=Account}/{action=Login}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",

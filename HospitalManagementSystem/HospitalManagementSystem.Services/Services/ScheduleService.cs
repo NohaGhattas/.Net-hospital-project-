@@ -1,4 +1,6 @@
-﻿using HospitalManagementSystem.Models.Doctors;
+﻿using HospitalManagementSystem.Data.Repositories.Interfaces;
+using HospitalManagementSystem.Models.Appointments;
+using HospitalManagementSystem.Models.Doctors;
 using HospitalManagementSystem.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,36 +10,44 @@ using System.Threading.Tasks;
 
 namespace HospitalManagementSystem.Services.Services
 {
+    
     public class ScheduleService : IScheduleService
     {
-        public Task AddScheduleAsync(Schedule schedule)
+        private readonly IGenericRepository<Schedule> _scheduleRepository;
+
+        public ScheduleService(IGenericRepository<Schedule> scheduleRepository)
         {
-            throw new NotImplementedException();
+            _scheduleRepository = scheduleRepository;
+        }
+        public async Task AddScheduleAsync(Schedule schedule)
+        {
+            await _scheduleRepository.AddAsync(schedule);
+        }
+        
+
+        public async Task DeleteScheduleAsync(int id)
+        {
+            var schedule = await _scheduleRepository.GetByIdAsync(id);
+            if (schedule != null)
+            {
+                _scheduleRepository.Delete(schedule);
+            }
         }
 
-        public Task DeleteScheduleAsync(int id)
+        public async Task<IEnumerable<Schedule>> GetAllSchedulesAsync()
         {
-            throw new NotImplementedException();
+            return await _scheduleRepository.GetAllAsync();
         }
 
-        public Task<IEnumerable<Schedule>> GetAllSchedulesAsync()
+
+        public async Task<Schedule> GetScheduleByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _scheduleRepository.GetByIdAsync(id);
         }
 
-        public Task<Schedule> GetScheduleByDoctorIdAsync(int id)
+        public async Task UpdateScheduleAsync(Schedule schedule)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Schedule> GetScheduleByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateScheduleAsync(Schedule schedule)
-        {
-            throw new NotImplementedException();
+            _scheduleRepository.Update(schedule);
         }
     }
 }

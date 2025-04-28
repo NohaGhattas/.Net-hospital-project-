@@ -1,10 +1,5 @@
 ﻿using HospitalManagementSystem.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HospitalManagementSystem.Data.Repositories
 {
@@ -37,6 +32,28 @@ namespace HospitalManagementSystem.Data.Repositories
         public async Task<T> GetByIdAsync(int id)
         {
             return await _context.Set<T>().FindAsync(id);
+        }
+
+        public async Task<T> GetByNameAsync(string name, string? departmentName = null)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            query = query.Where(e => EF.Property<string>(e, "Name") == name);
+
+            if (!string.IsNullOrEmpty(departmentName))
+            {
+                if (typeof(T).GetProperty("Department") != null)
+                {
+                    query = query.Include("Department")
+                                 .Where(e => EF.Property<string>(EF.Property<object>(e, "Department"), "Name") == departmentName);
+                }
+                else
+                {
+                    query = query.Where(e => EF.Property<string>(e, "DepartmentName") == departmentName);
+                }
+            }
+
+            return await query.FirstOrDefaultAsync();
         }
 
         public void Update(T entity)

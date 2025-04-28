@@ -44,5 +44,6 @@ namespace HospitalManagementSystem.Services.Services
         {
             _appointmentRepository.Update(appointment);
         }
+       
     }
 }

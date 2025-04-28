@@ -51,7 +51,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             var department = new Department()
             {
                 Name = departmentVm.Name,
-                DepartmentID = departmentVm.DepartmentID,
                 Description = departmentVm.Description
 
             };
@@ -93,15 +92,20 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             await _departmentService.UpdateDepartmentAsync(oldDepartment);
             return RedirectToAction(nameof(AllDepartments));
         }
-        [HttpPost]
-        public async Task DeleteDepartment(int id)
+        public async Task<IActionResult> DeleteDepartment(int id)
         {
             var department = await _departmentService.GetDepartmentByIdAsync(id);
             if (department != null)
             {
                 await _departmentService.DeleteDepartmentAsync(id);
+                TempData["SuccessMessage"] = "Department deleted successfully!";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Department not found!";
             }
 
+            return RedirectToAction(nameof(AllDepartments));
         }
 
     }

@@ -12,15 +12,18 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
-                                <form asp-action="EditDepartment" method="post" enctype="multipart/form-data">
+                                <form asp-area="Admin" asp-controller="Department"  asp-action="EditDepartment" method="post">
+                                    @Html.AntiForgeryToken()
+                                    @Html.HiddenFor(model => model.DepartmentID)
+
                                     <div class="form-group">
                                         <label for="name1">Name</label>
-                                        <input type="text" asp-for="@Model.Name" value="@Model.Name" class="form-control" id="name1"  />
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @id = "name1" })
                                     </div>
 
                                     <div class="form-group">
                                         <label for="des">Description</label>
-                                        <input type="text" asp-for="@Model.Description" value="@Model.Description" class="form-control" id="des" />
+                                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control", @id = "des" })
                                     </div>
                                     <div class="card-action">
 

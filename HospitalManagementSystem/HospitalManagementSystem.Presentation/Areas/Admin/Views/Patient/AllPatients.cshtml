@@ -17,6 +17,7 @@
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>BirthDate</th>
+                                    <th>Age</th>
                                     <th>GenderType</th>
                                     <th>Address</th>
                                     <th>Status</th>
@@ -31,14 +32,13 @@
                                         <td>@d.Name</td>
                                         <td>@d.PhoneNumber</td>
                                         <td>@d.BirthDate.ToString("dd/MM/yyyy")</td>
+                                        <th>@d.Age</th>
                                         <td>@d.GenderType.ToString()</td>
                                         <td>@d.Address</td>
                                         <td>@d.Status</td>
                                         <td>
-                                            <a class="btn btn-success" asp-area="Admin" asp-controller="Patient" asp-action="EditPatient" asp-route-id="@d.Id">Edit</a> |
-                                            <form asp-area="Admin" asp-controller="Patient" asp-action="DeletePatient" asp-route-id="@d.Id" method="post" style="display:inline">
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this doctor?');">Delete</button>
-                                            </form>
+                                            <a href="javascript:void(0);" class="btn btn-success" onclick="window.location.href='@Url.Action("EditPatient", "Patient", new { id = d.Id })';">Edit</a>
+                                            <a href="Admin/Patient/DeletePatient/@d.Id" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 }

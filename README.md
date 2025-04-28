@@ -17,8 +17,13 @@ records.
 
 
 ## Features
-- Feature 1.
-- Feature 2.
+- A Departments page that lists all the available clinics in the hospital.
+- In the Departments page, there are some filters that help users to find doctors according to clinic and/or suitable date.
+- In the Departments page, user can book an appointment.
+- About page that show the history of the hospital.
+- Contact us page which show the address of the hospital, its phone number and direct link to communicate over WhatsApp,
+the working hours, direct links to the hospital social media accounts, and an embedded Google Maps location.
+- In Areas of Admin, There are many CRUD (Insert and Edit) operations of(Patients/Doctors/Departments) and Dashboard 
 
 
 ## In Progress
@@ -30,6 +35,10 @@ records.
 
 ![App Screenshot](docs/HomePage.png)
 ![App Screenshot](docs/About.png)
+![App Screenshot](docs/Department-wo-filters.png)
+![App Screenshot](docs/Department-w-filters.png)
+![App Screenshot](docs/Book-Now.png)
+![App Screenshot](docs/Appointment-confirmation.png)
 ![App Screenshot](docs/Contact.png)
 
 ## Components
@@ -58,14 +67,23 @@ HospitalManagementSystem/
 	│	├── Controllers/ 	
 	│	├── ViewModels/ 	
 	│	├── Views/ 		
-	├── HospitalManagementSystem.Services/ 
+	├── HospitalManagementSystem.Services/
+	│	├── Helpers/ 	
+	│	├── Services/
+	│	│	├── Interfaces/  		
 	├── HospitalManagementSystem.Data/
+	│	├── Migrations/ 	
+	│	├── Repositories/
+	│   │	├── Interfaces/
+	│   │   ├── GenericRepository.cs
+	│	├── ApplicationDbContext.cs	
 	├── HospitalManagementSystem.Models/ 
 	│	├── Appointments/ 	
 	│	├── Contacts/ 	
 	│	├── Doctors/ 	
 	│	├── Patients/
 	│	├── Users/
+	│	├── Enums/
 ```
 ## Getting Started
 

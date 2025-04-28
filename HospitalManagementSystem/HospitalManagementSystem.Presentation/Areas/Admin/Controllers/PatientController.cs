@@ -20,7 +20,27 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> AllPatients()
         {
             var patients = await _patientService.GetAllPatientsAsync();
-            return View(patients);
+            var patientsList = new List<PatientVM>();
+            foreach (var patient in patients)
+            {
+                var patientVM = new PatientVM()
+                {
+                    Name = patient.Name,
+                    Address = patient.Address,
+                    BirthDate = patient.BirthDate,
+                    GenderType = patient.GenderType,
+                    PhoneNumber= patient.PhoneNumber,
+                    Status = patient.Status,
+                    Age = DateTime.Now.Year - patient.BirthDate.Year
+
+            };
+                if (DateTime.Now.DayOfYear < patient.BirthDate.DayOfYear)
+                {
+                    patientVM.Age--;
+                }
+                patientsList.Add(patientVM);
+            }
+            return View(patientsList);
         }
         [HttpGet]
         public IActionResult AddPatient()
@@ -36,7 +56,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             var patient = new Patient()
             {
                 Name = patientVM.Name,
-                Status = patientVM.Status,
+                Status = "Active",
                 PhoneNumber = patientVM.PhoneNumber,
                 Address = patientVM.Address,
                 BirthDate = patientVM.BirthDate,
@@ -44,7 +64,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             };
             await _patientService.AddPatientAsync(patient);
 
-            await _patientService.AddPatientAsync(patient);
             return RedirectToAction(nameof(AllPatients));
         }
 
@@ -60,7 +79,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             {
                 Name = patient.Name,
                 Address = patient.Address,
-                Status = patient.Status,
                 BirthDate = patient.BirthDate,
                 PhoneNumber = patient.PhoneNumber,
                 GenderType = patient.GenderType
@@ -79,7 +97,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 
             oldPatient.Name = patientVM.Name;
             oldPatient.Address = patientVM.Address;
-            oldPatient.Status = patientVM.Status;
             oldPatient.BirthDate = patientVM.BirthDate;
             oldPatient.PhoneNumber = patientVM.PhoneNumber;
             oldPatient.GenderType = patientVM.GenderType;
@@ -87,7 +104,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             await _patientService.UpdatePatientAsync(oldPatient);
             return RedirectToAction(nameof(AllPatients));
         }
-        [HttpPost]
         public async Task DeletePatient(int id)
         {
             var patient = await _patientService.GetPatientByIdAsync(id);

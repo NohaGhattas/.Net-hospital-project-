@@ -1,0 +1,221 @@
+﻿@model HospitalManagementSystem.Presentation.ViewModels.DepartmentViewModel
+@{
+    ViewData["Title"] = "Department";
+}
+
+<div class="departments-page">
+    <div class="filters">
+        <div class="form-row">
+            <select id="departmentDropdown" class="form-control filter-element">
+                <option value="">All Clinics</option>
+                @foreach (var department in Model.Departments)
+                {
+                    if (department == Model.SelectedDepartment)
+                    {
+                        <option value="@department" selected>@department</option>
+                    }
+                    else
+                    {
+                        <option value="@department">@department</option>
+                    }
+                }
+            </select>
+
+            <input type="date" id="datePicker" class="form-control filter-element" value="@(Model.SelectedDate?.ToString("yyyy-MM-dd") ?? "")" />
+            <button id="filterButton" class="btn btn-primary filter-element">Filter</button>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="doctorCards" class="doctor-cards">
+        @if (Model.DoctorCards != null && Model.DoctorCards.Any())
+        {
+            <div class="row">
+                @foreach (var doctor in Model.DoctorCards)
+                {
+                    <div class="col-md-4 doctor-card"
+                         data-department="@doctor.Specialization"
+                         data-doctor-name="@doctor.Name"
+                         data-schedule='@Newtonsoft.Json.JsonConvert.SerializeObject(doctor.Schedule)'>
+
+                        <div class="card">
+                            <img src="@doctor.ImageURL" class="card-img-top" alt="Doctor Image">
+                            <div class="card-body">
+                                <div class="text-content">
+                                    <h5 class="card-title">@doctor.Name</h5>
+                                    <p class="card-text">@doctor.Specialization</p>
+                                </div>
+                                <a href="/Appointment/Index?doctorName=@doctor.Name&specialization=@doctor.Specialization" class="btn btn-primary">Book Now</a>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No doctors found for the selected filters.</p>
+        }
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const departmentDropdown = document.getElementById("departmentDropdown");
+        const doctorCards = document.querySelectorAll(".doctor-card");
+        const filterButton = document.getElementById("filterButton");
+
+        const departmentToDoctors = {};
+
+        doctorCards.forEach(card => {
+            const department = card.dataset.department;
+            const doctorName = card.dataset.doctorName;
+
+            if (!departmentToDoctors[department]) {
+                departmentToDoctors[department] = [];
+            }
+            departmentToDoctors[department].push(doctorName);
+        });
+
+        departmentDropdown.addEventListener("change", function () {
+            const selectedDepartment = this.value;
+
+            if (selectedDepartment === "") {
+                Object.values(departmentToDoctors).flat().forEach(doctorName => {
+                    const option = new Option(doctorName, doctorName);
+                });
+            } else {
+                const doctors = departmentToDoctors[selectedDepartment] || [];
+                doctors.forEach(doctorName => {
+                    const option = new Option(doctorName, doctorName);
+                });
+            }
+            filterDoctorCards();
+        });
+
+        filterButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            filterDoctorCards();
+        });
+
+        function filterDoctorCards() {
+            const selectedDepartment = departmentDropdown.value;
+            const selectedDate = document.getElementById("datePicker").value;
+
+            doctorCards.forEach(card => {
+                const doctorName = card.querySelector(".card-title").textContent.toLowerCase();
+                const doctorDepartment = card.dataset.department;
+
+                const matchesDepartment = selectedDepartment === "" || doctorDepartment === selectedDepartment;
+
+                let matchesDate = true;
+                if (selectedDate) {
+                    const doctorSchedules = card.dataset.schedule ? JSON.parse(card.dataset.schedule) : [];
+
+                    matchesDate = doctorSchedules.some(scheduleDateTime => {
+                        const scheduleDate = scheduleDateTime.split('T')[0];
+                        return scheduleDate === selectedDate;
+                    });
+                }
+
+                if (matchesDepartment && matchesDate) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+    });
+</script>
+
+
+<style>
+    .departments-page {
+        margin-right: 100px;
+        margin-left: 100px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-family: Arial, sans-serif;
+    }
+
+    .filters {
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+        align-items: center;
+    }
+
+    .filter-element {
+        height: 44px;
+        width: 180px;
+        font-size: 16px;
+    }
+
+    input[type="date"].filter-element {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .doctor-cards .card {
+        margin-bottom: 20px;
+    }
+
+    .card img {
+        height: 350px;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .card-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .card-body .text-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .card-text {
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .card .btn-primary {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
+        height: 44px;
+        width: 100px;
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+
+    #filterButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        font-weight: bold;
+        height: 44px;
+        width: 100px;
+    }
+</style>
+
