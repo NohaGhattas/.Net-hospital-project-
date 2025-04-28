@@ -7,6 +7,7 @@ using HospitalManagementSystem.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 {
@@ -36,7 +37,8 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                     ImageURL = doctor.ImageURL,
                     Status = doctor.Status,
                     Specialization = doctor.Specialization,
-                    DepartmentId = doctor.DepartmentID
+                    DepartmentId = doctor.DepartmentID,
+                    SpecialityLevel = doctor.SpecialtyLevel
 
                 };
                 doctorsList.Add(doctorVM);
@@ -68,7 +70,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 return View(doctorVm);
             }
 
-            doctorVm.ImageURL = DocumentHelper.UploadFile(doctorVm.Image, "images");
+            doctorVm.ImageURL = DocumentHelper.UploadFile(doctorVm.Image, "images","doctor");
 
             var doctor = new Doctor()
             {
@@ -77,7 +79,8 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 Status = doctorVm.Status,
                 ImageURL = doctorVm.ImageURL,
                 Phone = doctorVm.Phone,
-                DepartmentID = doctorVm.DepartmentId.Value 
+                DepartmentID = doctorVm.DepartmentId.Value,
+                SpecialtyLevel = doctorVm.SpecialityLevel
             };
 
             await _doctorService.AddDoctorAsync(doctor);
@@ -90,10 +93,54 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
         {
 
             var doctor = await _doctorService.GetDoctorByIdAsync(id);
+        
+            if (doctor == null)
+            {
+                return NotFound();
+            }
+
+            var departments =(await _departmentService.GetAllDepartmentsAsync()).Select(d => new SelectListItem
+                                     {
+                                         Value = d.DepartmentID.ToString(),
+                                         Text = d.Name
+                                     }).ToList();
+
+            var model = new EditDoctorVM
+            {
+                Id = doctor.DepartmentID,
+                Name = doctor.Name,
+                Specialization = doctor.Specialization,
+                Status = doctor.Status,
+                Phone = doctor.Phone,
+                SpecialityLevel = doctor.SpecialtyLevel,
+                Departments = departments
+            };
+
+            return View(model);
+        }
+
+        
+        [HttpPost]
+        public async Task<IActionResult> EditDoctor(EditDoctorVM editDoctorVM)
+        {
+            var doctor = await _doctorService.GetDoctorByIdAsync(editDoctorVM.Id);
             if (doctor == null)
                 return NotFound();
 
-            var doctorVm = new DoctorVM
+            var departments = await _departmentService.GetAllDepartmentsAsync();
+            if (departments == null || !departments.Any())
+            {
+                return View("Error"); 
+            }
+
+            var departmentList = departments.Select(d => new SelectListItem
+            {
+                Value = d.DepartmentID.ToString(),
+                Text = d.Name,
+                Selected = d.DepartmentID == doctor.DepartmentID  
+            }).ToList();
+
+            var doctorVm = new EditDoctorVM()
             {
                 Id = doctor.DoctorID,
                 Name = doctor.Name,
@@ -101,36 +148,22 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 Status = doctor.Status,
                 ImageURL = doctor.ImageURL,
                 Phone = doctor.Phone,
+                DepartmentId = doctor.DepartmentID,
+                SpecialityLevel = doctor.SpecialtyLevel
             };
+
+           
             return View(doctorVm);
         }
-        [HttpPost]
-        public  async Task<IActionResult> EditDoctor(DoctorVM doctorVm)
-        {
-            if (!ModelState.IsValid)
-                return View(doctorVm);
 
-            var oldDoctor = await _doctorService.GetDoctorByIdAsync(doctorVm.Id);
-            if (oldDoctor == null)
-                return NotFound();
-
-            oldDoctor.Name = doctorVm.Name;
-            oldDoctor.Specialization = doctorVm.Specialization;
-            oldDoctor.Status = doctorVm.Status;
-            oldDoctor.ImageURL = doctorVm.ImageURL;
-            oldDoctor.Phone = doctorVm.Phone;
-
-            await _doctorService.UpdateDoctorAsync(oldDoctor);
-            return RedirectToAction(nameof(AllDoctors));
-        }
-        public async Task DeleteDoctor(int id)
+        public async Task<IActionResult> DeleteDoctor(int id)
         {
             var doctor = await _doctorService.GetDoctorByIdAsync(id);
             if (doctor != null)
             {
                 await _doctorService.DeleteDoctorAsync(id);
             }
-
+            return RedirectToAction(nameof(AllDoctors));
         }
 
     }

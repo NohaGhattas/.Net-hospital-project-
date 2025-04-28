@@ -30,6 +30,17 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             dashboard.NewPatientCount = await _patientService.GetNewPatientsTodayAsync();
             return View(dashboard);
         }
+        //[HttpGet]
+        //public async Task<IActionResult> HomeContent()
+        //{
+
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> HomeContent()
+        //{
+
+        //}
+
 
     }
 }

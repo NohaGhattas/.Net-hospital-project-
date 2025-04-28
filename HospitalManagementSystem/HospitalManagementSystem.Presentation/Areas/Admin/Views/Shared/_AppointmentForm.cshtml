@@ -1,0 +1,52 @@
+﻿@model HospitalManagementSystem.Presentation.Areas.Admin.Models.AppointmentVM
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddAppointment" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label for="AppointmentDate" class="form-label">Date</label>
+                <input asp-for="AppointmentDate" class="form-control" type="date" />
+            </div>
+            <div class="mb-3">
+                <label for="AppointmentTime" class="form-label">Time</label>
+                <input asp-for="AppointmentTime" class="form-control" type="time" />
+            </div>
+            <div class="mb-3">
+                <label for="Status" class="form-label">Status</label>
+                @Html.TextBoxFor(m => m.Status, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                <label for="PatientID" class="form-label">Patient</label>
+                <select asp-for="PatientID" asp-items="Model.Patients" class="form-select">
+                    <option value="">Select Patient</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="DoctorID" class="form-label">Doctor</label>
+                <select asp-for="DoctorID" asp-items="Model.Doctors" class="form-select">
+                    <option value="">Select Doctor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="ScheduleID" class="form-label">Schedule</label>
+                <select asp-for="ScheduleID" asp-items="Model.Schedules" class="form-select">
+                    <option value="">Select Schedule</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
