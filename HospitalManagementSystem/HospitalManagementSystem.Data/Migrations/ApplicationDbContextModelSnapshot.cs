@@ -430,6 +430,9 @@ namespace HospitalManagementSystem.Data.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("StoredSalt")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -437,6 +440,19 @@ namespace HospitalManagementSystem.Data.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("CustomUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            UserID = 4,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "test@example.com",
+                            ModifiedBy = 1,
+                            PasswordHash = "K4ctMCDZoU1b8/vZ47pD/MOwahkFy10L5Yhp1oO5awF/hDkRM9jaOal6gBlnHJgiW2foZDerYG/hUEwU7CW7XA==",
+                            StoredSalt = new byte[] { 79, 186, 73, 78, 78, 50, 65, 179, 61, 47, 202, 24, 92, 195, 65, 111, 166, 45, 148, 131, 91, 11, 75, 152, 21, 27, 106, 71, 193, 190, 249, 170, 223, 140, 3, 100, 18, 122, 178, 198, 146, 186, 205, 112, 115, 46, 96, 199, 84, 211, 34, 220, 165, 213, 144, 59, 118, 236, 87, 116, 251, 143, 151, 77, 17, 235, 156, 120, 167, 100, 23, 189, 1, 10, 134, 216, 68, 65, 195, 52, 72, 137, 126, 106, 197, 23, 255, 217, 145, 163, 254, 81, 168, 132, 62, 238, 10, 250, 124, 200, 48, 202, 135, 87, 59, 156, 39, 61, 34, 115, 164, 254, 35, 250, 139, 38, 171, 15, 229, 250, 245, 96, 183, 6, 214, 138, 154, 43 },
+                            UserName = "test2"
+                        });
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.Models.Users.UserDetails", b =>
