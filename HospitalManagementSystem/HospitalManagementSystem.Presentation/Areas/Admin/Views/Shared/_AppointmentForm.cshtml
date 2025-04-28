@@ -12,10 +12,7 @@
                 <label for="AppointmentTime" class="form-label">Time</label>
                 <input asp-for="AppointmentTime" class="form-control" type="time" />
             </div>
-            <div class="mb-3">
-                <label for="Status" class="form-label">Status</label>
-                @Html.TextBoxFor(m => m.Status, new { @class = "form-control" })
-            </div>
+          
             <div class="mb-3">
                 <label for="PatientID" class="form-label">Patient</label>
                 <select asp-for="PatientID" asp-items="Model.Patients" class="form-select">

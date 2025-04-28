@@ -56,7 +56,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             var patient = new Patient()
             {
                 Name = patientVM.Name,
-                Status = patientVM.Status,
+                Status = "Active",
                 PhoneNumber = patientVM.PhoneNumber,
                 Address = patientVM.Address,
                 BirthDate = patientVM.BirthDate,
@@ -79,7 +79,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             {
                 Name = patient.Name,
                 Address = patient.Address,
-                Status = patient.Status,
                 BirthDate = patient.BirthDate,
                 PhoneNumber = patient.PhoneNumber,
                 GenderType = patient.GenderType
@@ -98,7 +97,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 
             oldPatient.Name = patientVM.Name;
             oldPatient.Address = patientVM.Address;
-            oldPatient.Status = patientVM.Status;
             oldPatient.BirthDate = patientVM.BirthDate;
             oldPatient.PhoneNumber = patientVM.PhoneNumber;
             oldPatient.GenderType = patientVM.GenderType;

@@ -52,7 +52,7 @@ namespace HospitalManagementSystem.Presentation
 
             app.MapControllerRoute(
      name: "areas",
-     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+     pattern: "{area:exists}/{controller=Account}/{action=Login}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",

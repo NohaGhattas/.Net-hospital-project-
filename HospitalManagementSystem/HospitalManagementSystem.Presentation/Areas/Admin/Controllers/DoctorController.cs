@@ -76,7 +76,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             {
                 Name = doctorVm.Name,
                 Specialization = doctorVm.Specialization,
-                Status = doctorVm.Status,
+                Status = "Active",
                 ImageURL = doctorVm.ImageURL,
                 Phone = doctorVm.Phone,
                 DepartmentID = doctorVm.DepartmentId.Value,
@@ -110,7 +110,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 Id = doctor.DepartmentID,
                 Name = doctor.Name,
                 Specialization = doctor.Specialization,
-                Status = doctor.Status,
                 Phone = doctor.Phone,
                 SpecialityLevel = doctor.SpecialtyLevel,
                 Departments = departments
@@ -145,7 +144,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 Id = doctor.DoctorID,
                 Name = doctor.Name,
                 Specialization = doctor.Specialization,
-                Status = doctor.Status,
                 ImageURL = doctor.ImageURL,
                 Phone = doctor.Phone,
                 DepartmentId = doctor.DepartmentID,

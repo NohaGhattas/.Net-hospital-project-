@@ -99,7 +99,7 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
             {
                 AppointmentDate = appointmentVM.AppointmentDate,
                 AppointmentTime = appointmentVM.AppointmentTime,
-                Status = appointmentVM.Status,
+                Status ="Active",
                 PatientID = appointmentVM.PatientID,
                 DoctorID = appointmentVM.DoctorID,
                 ScheduleID = appointmentVM.ScheduleID
@@ -122,7 +122,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 AppointmentID = appointment.AppointmentID,
                 AppointmentDate = appointment.AppointmentDate,
                 AppointmentTime = appointment.AppointmentTime,
-                Status = appointment.Status??"null",
                 PatientID = appointment.PatientID,
                 DoctorID = appointment.DoctorID,
                 ScheduleID = appointment.ScheduleID,
@@ -181,7 +180,6 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
 
             appointment.AppointmentDate = appointmentVM.AppointmentDate;
             appointment.AppointmentTime = appointmentVM.AppointmentTime;
-            appointment.Status = appointmentVM.Status;
             appointment.PatientID = appointmentVM.PatientID;
             appointment.DoctorID = appointmentVM.DoctorID;
             appointment.ScheduleID = appointmentVM.ScheduleID;
