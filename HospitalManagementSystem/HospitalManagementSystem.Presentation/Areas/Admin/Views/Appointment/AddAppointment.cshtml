@@ -1,0 +1,62 @@
+﻿@using HospitalManagementSystem.Presentation.Areas.Admin.Models
+@model AppointmentVM
+
+<div class="container-fluid">
+    <div class="page-inner">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-area="Admin" asp-controller="Appointment" asp-action="AddAppointment" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label for="AppointmentDate" class="form-label">Date</label>
+                        <input asp-for="AppointmentDate" class="form-control" type="date" />
+                        <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="AppointmentTime" class="form-label">Time</label>
+                        <input asp-for="AppointmentTime" class="form-control" type="time" />
+                        <span asp-validation-for="AppointmentTime" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="PatientID" class="form-label">Patient</label>
+                        <select asp-for="PatientID" asp-items="Model.Patients" class="form-select">
+                            <option value="">Select Patient</option>
+                        </select>
+                        <span asp-validation-for="PatientID" class="text-danger"></span>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="DoctorID" class="form-label">Doctor</label>
+                        <select asp-for="DoctorID" asp-items="Model.Doctors" class="form-select">
+                            <option value="">Select Doctor</option>
+                        </select>
+                        <span asp-validation-for="DoctorID" class="text-danger"></span>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="ScheduleID" class="form-label">Schedule</label>
+                        <select asp-for="ScheduleID" asp-items="Model.Schedules" class="form-select">
+                            <option value="">Select Schedule</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Add" class="btn btn-primary" />
+                        
+                            <buttun class="tn btn-secondary" asp-action="Index" asp-controller="Home" asp-aria="Admin">Back</buttun>>
+                        
+                    </div>
+
+                </form>
+            </div>
+            
+
+            @section Scripts {
+                @{
+                    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                }
+            }
+    </div>
+</div>

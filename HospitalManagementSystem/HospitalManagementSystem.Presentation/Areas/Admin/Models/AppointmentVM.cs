@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using HospitalManagementSystem.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace HospitalManagementSystem.Presentation.Areas.Admin.Models
 {
     public class AppointmentVM
     {
+        
         public int AppointmentID { get; set; }
 
         [Required(ErrorMessage = "Appointment Date is required.")]

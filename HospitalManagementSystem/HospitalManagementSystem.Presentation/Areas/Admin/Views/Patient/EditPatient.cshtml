@@ -40,10 +40,10 @@
                                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="Gender">Gender</label><br />
+                                        <label asp-for="GenderType">Gender</label><br />
 
                                     <div class="form-check form-check-inline">
-                                        <input asp-for="Gender"
+                                            <input asp-for="GenderType"
                                                class="form-check-input"
                                                type="radio"
                                                value="Male"
@@ -52,7 +52,7 @@
                                     </div>
 
                                     <div class="form-check form-check-inline">
-                                        <input asp-for="Gender"
+                                            <input asp-for="GenderType"
                                                class="form-check-input"
                                                type="radio"
                                                value="Female"
@@ -60,10 +60,12 @@
                                         <label class="form-check-label" for="Gender_Female">Female</label>
                                     </div>
 
-                                    <span asp-validation-for="Gender" class="text-danger"></span>
+                                        <span asp-validation-for="GenderType" class="text-danger"></span>
                                 </div>
 
-
+                                    <button class="btn btn-success">Submit</button>
+                                    <button class="btn btn-danger">Cancel</button>
+                                </form>
                             </div>
 
                         </div>
@@ -74,11 +76,7 @@
 
                 </div>
             </div>
-            <div class="card-action">
-                <button class="btn btn-success">Submit</button>
-                <button class="btn btn-danger">Cancel</button>
-            </div>
-            </form>
+                
         </div>
     </div>
 </div>

@@ -14,29 +14,26 @@
             </div>
             <div class="ms-md-auto py-2 py-md-0">
                 <a href="#" class="btn btn-label-info btn-round me-2">All Schedules</a>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                <a asp-action="AddAppointment" asp-area="Admin" asp-controller="Appointment" class="btn btn-primary" >
                     Add Appointment
-                </button>
-                <!-- Modal -->
-                <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+                </a>
+               @*  <!-- Modal -->
+                <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="false">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Add Appointment</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" id="modalBodyContent">
 
-                                @Html.Partial("_AppointmentForm", new AppointmentVM())
+                               @Html.Partial("_AppointmentForm")
  
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" asp-area="Admin" asp-controller="Appointment" asp-action="AddAppointment" class="btn btn-primary">Save changes</button>
-                            </div>
+                            
                         </div>
                     </div>
-                </div>
+                </div> *@
                
             </div>
         </div>

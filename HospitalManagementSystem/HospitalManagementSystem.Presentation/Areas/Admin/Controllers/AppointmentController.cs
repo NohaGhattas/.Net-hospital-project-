@@ -64,9 +64,9 @@ namespace HospitalManagementSystem.Presentation.Areas.Admin.Controllers
                 }).ToList()
             };
 
-            
-                return View(appointmentVM);
-       
+
+            return View(appointmentVM);
+
 
         }
         [HttpPost]

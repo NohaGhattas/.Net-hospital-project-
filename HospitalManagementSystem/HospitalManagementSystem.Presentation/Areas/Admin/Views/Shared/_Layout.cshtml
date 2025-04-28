@@ -83,7 +83,7 @@
                                href="Admin/Home/Index"
                                class="collapsed"
                                aria-expanded="false">
-                                <i class="fas-solid fas-house" style="color:white"></i>
+                                <i class="fas-solid fas-house"></i>
                                 <p>Dashboard</p>
                                 <span class="caret"></span>
                             </a>
@@ -106,6 +106,7 @@
                                     </li>
                                     <li>
                                         <a href="Admin/Doctor/AllDoctors">
+                                            <i class="fa-solid fa-user-doctor"></i>
                                             <span class="sub-item1">AllDoctors</span>
                                         </a>
                                     </li>
@@ -130,6 +131,7 @@
                                     </li>
                                     <li>
                                         <a href="Admin/Patient/AllPatients">
+                                            <i class="fa-solid fa-hospital-user"></i>
                                             <span class="sub-item1">All Patients</span>
                                         </a>
                                     </li>
@@ -138,7 +140,7 @@
                         </li>
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#department">
-                                <i class="fa-solid fa-bed"></i>
+                                <i class="fa-regular fa-building"></i>
                                 <p>Departments</p>
                                 <span class="caret"></span>
                             </a>
@@ -152,6 +154,7 @@
                                     </li>
                                     <li>
                                         <a href="Admin/Department/AllDepartments">
+                                            <i class="fa-regular fa-building"></i>
                                             <span class="sub-item1">All Departments</span>
                                         </a>
                                     </li>
@@ -168,6 +171,7 @@
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="Admin/Appointment/AllAppointments">
+                                            <i class="fa-regular fa-calendar-check"></i>
                                             <span class="sub-item1">All Appointments</span>
                                         </a>
                                     </li>
@@ -210,7 +214,7 @@
                 <!-- Navbar Header -->
                 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
-                        <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
+@*                         <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button type="submit" class="btn btn-search pe-1">
@@ -222,7 +226,7 @@
                                        class="form-control" />
                             </div>
                         </nav>
-
+ *@
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
                                 <a class="nav-link dropdown-toggle"
@@ -521,25 +525,13 @@
                     <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link" href="http://www.themekita.com">
-                                ThemeKita
+                                Dashboard
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> Help </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> Licenses </a>
-                        </li>
+                        
                     </ul>
                 </nav>
-                <div class="copyright">
-                    2024, made with <i class="fa fa-heart heart text-danger"></i> by
-                    <a href="http://www.themekita.com">ThemeKita</a>
-                </div>
-                <div>
-                    Distributed by
-                    <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
-                </div>
+              
             </div>
         </footer>
     </div>
@@ -736,5 +728,7 @@
           fillColor: "rgba(255, 165, 52, .14)",
         });
     </script>
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>
