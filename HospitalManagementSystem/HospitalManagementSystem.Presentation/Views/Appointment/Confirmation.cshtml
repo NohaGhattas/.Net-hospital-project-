@@ -1,0 +1,41 @@
+﻿@model HospitalManagementSystem.Presentation.ViewModels.AppointmentViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center" style="margin-top: 50px;">
+            <h2>Appointment Request Recorded!</h2>
+            <p>Here is your appointment summary</p>
+
+            <table class="table table-bordered mt-4 font-weight-bold gj-font-size-16">
+                <tr>
+                    <th>Patient Name</th>
+                    <td>@Model.PatientName</td>
+                </tr>
+                <tr>
+                    <th>Doctor Name</th>
+                    <td>@Model.DoctorName</td>
+                </tr>
+                <tr>
+                    <th>Specialization</th>
+                    <td>@Model.Specialization</td>
+                </tr>
+                <tr>
+                    <th>Appointment Date</th>
+                    <td>@Model.AppointmentDate.ToShortDateString()</td>
+                </tr>
+            </table>
+            
+            <div class="text-center">
+                <a href="/" class="btn btn-primary mt-3">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+ .btn-primary {
+        text-align: center;
+        padding-right: 10px;
+        margin-bottom: 50px;
+    }
+</style>

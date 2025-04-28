@@ -12,6 +12,7 @@ namespace HospitalManagementSystem.Services.Services.Interfaces
     {
         Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
         Task<Doctor> GetDoctorByIdAsync(int id);
+        Task<Doctor> GetDoctorByNameAsync(string name, string? departmentName = null);
         Task AddDoctorAsync(Doctor doctor);
         Task UpdateDoctorAsync(Doctor doctor);
         Task DeleteDoctorAsync(int id);
